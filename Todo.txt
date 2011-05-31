@@ -1,0 +1,6 @@
+2011-05-30 Create README.markdown to be published in github
+2011-05-30 Implement filetype detection
+2011-05-30 Implement colorized priorities
+2011-05-30 Sort lines per priority
+2011-05-30 Map commands to add, rm, ls, pri, depri etc
+2011-05-30 Contact main project for reference
