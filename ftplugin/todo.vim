@@ -1,3 +1,3 @@
 " Stop breaking lines automatically
-set textwidth=0
-set wrapmargin=0
+setlocal textwidth=0
+setlocal wrapmargin=0
