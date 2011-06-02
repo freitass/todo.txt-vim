@@ -8,8 +8,8 @@ if exists("g:loaded_todo")
 endif
 
 " Stop breaking lines automatically
-set textwidth=0
-set wrapmargin=0
+setlocal textwidth=0
+setlocal wrapmargin=0
 
 "" Vim global plugin for correcting typing mistakes
 "" Last Change:	2000 Oct 15
