@@ -3,7 +3,7 @@
 " Author:      Leandro Freitas <freitass@gmail.com>
 " Licence:     Vim licence
 " Website:     http://github.com/freitass/todo.txt.vim
-" Version:     0.2
+" Version:     0.3
 
 if exists("b:current_syntax")
     finish
@@ -37,8 +37,8 @@ syntax  match  TodoPriorityX  '^([xX])\s.\+$'            contains=TodoDate,TodoP
 syntax  match  TodoPriorityY  '^([yY])\s.\+$'            contains=TodoDate,TodoProject,TodoContext
 syntax  match  TodoPriorityZ  '^([zZ])\s.\+$'            contains=TodoDate,TodoProject,TodoContext
 syntax  match  TodoDate       '\d\{4\}-\d\{2\}-\d\{2\}'  contains=NONE
-syntax  match  TodoProject    '+\a\+'                    contains=NONE
-syntax  match  TodoContext    '@\a\+'                    contains=NONE
+syntax  match  TodoProject    '+\w\+'                    contains=NONE
+syntax  match  TodoContext    '@\w\+'                    contains=NONE
 
 " Other priority colours might be defined by the user
 highlight  default  link  TodoDone       Comment
