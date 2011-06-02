@@ -8,7 +8,6 @@ if exists("g:loaded_todo")
 endif
 
 " Stop breaking lines automatically
-<<<<<<< HEAD
 set textwidth=0
 set wrapmargin=0
 
@@ -56,7 +55,3 @@ set wrapmargin=0
 "let &cpo = s:save_cpo
 
 let g:loaded_todo = 1
-=======
-setlocal textwidth=0
-setlocal wrapmargin=0
->>>>>>> c53c15dc2ca63f8b92faa665c8f4187a19487425
