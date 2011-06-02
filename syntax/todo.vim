@@ -3,7 +3,7 @@
 " Author:      Leandro Freitas <freitass@gmail.com>
 " Licence:     Vim licence
 " Website:     http://github.com/freitass/todo.txt.vim
-" Version:     0.2
+" Version:     0.3
 
 if exists("b:current_syntax")
     finish
