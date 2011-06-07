@@ -5,6 +5,12 @@
 " Website:     http://github.com/freitass/todo.txt.vim
 " Version:     0.3
 
+" Some options lose their values when window changes. They will be set every
+" time this script is invocated, which is whenever a file of this type is
+" created or edited.
+setlocal textwidth=0
+setlocal wrapmargin=0
+
 if exists("g:loaded_todo")
     finish
 endif
@@ -12,9 +18,6 @@ let g:loaded_todo = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
-
-setlocal textwidth=0
-setlocal wrapmargin=0
 
 setlocal foldmethod=expr
 setlocal foldexpr=TodoFoldLevel(v:lnum)
