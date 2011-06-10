@@ -1,13 +1,13 @@
-(A) 2011-06-06 Easier date input @ftplugin
+(A) 2011-06-06 Check file syntax @syntax
 (B) 2011-05-31 Start documentation @doc
-(C) 2011-05-30 Create README.markdown to be published in github @doc
 (C) 2011-06-01 Improve syntax file @syntax
 2011-05-30 Contact main project for reference
 2011-05-30 Map commands to add, rm, ls, pri, depri etc @ftplugin
-2011-06-06 Check file syntax @syntax
+X 2011-05-30 Create README.markdown to be published in github @doc
 X 2011-05-30 Implement colorized priorities @syntax
 X 2011-05-30 Implement filetype detection @ftdetect
 X 2011-05-30 Sort lines per priority @ftplugin
 X 2011-05-31 Highlight date, project and context of tasks with no priority @syntax
 X 2011-05-31 Stop breaking lines automatically @ftplugin
+X 2011-06-06 Easier date input @ftplugin
 X 2011-06-06 Implement foldings @ftplugin
