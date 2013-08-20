@@ -35,6 +35,11 @@ if !hasmapto("<leader>d",'v')
     vnoremap <script> <silent> <buffer> <leader>d c<C-R>=strftime("%Y-%m-%d")<CR><Esc>
 endif
 
+" Mark done {{{2
+if !hasmapto("<leader>D",'n')
+    nnoremap <script> <silent> <buffer> <leader>D ix  <ESC>"=strftime("%Y-%m-%d")<CR>P
+endif
+
 " Folding {{{1
 " Options {{{2
 setlocal foldmethod=expr
