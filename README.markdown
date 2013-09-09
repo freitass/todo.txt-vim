@@ -12,5 +12,7 @@ mappings, to help with edition of these files:
 
 `<leader>-d` : Insert the current date
 
+`<leader>-D` : Insert the current date with leading `x` (completed)
+
 `date<tab>` : (Insert mode) Insert the current date
 
