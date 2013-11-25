@@ -1,0 +1,14 @@
+*todo.txt*
+
+==============================================================================
+COMMANDS                                                       *todo-commands*
+
+`<Leader>-s` : Sort the file
+
+`<Leader>-d` : Insert the current date
+
+`<Leader>-D` : Insert the current date with leading `x` (completed)
+
+`date<tab>` : (Insert mode) Insert the current date
+
+<Leader> is \ by default, so <Leader>-s means you type \s
