@@ -16,3 +16,5 @@ mappings, to help with edition of these files:
 
 `date<tab>` : (Insert mode) Insert the current date
 
+If you want the help installed run ":helptags ~/.vim/doc" inside vim after having copied the files.
+Then you will be able to get the commands help with: :h todo.txt
