@@ -24,7 +24,7 @@ endif
 
 " Insert date {{{2
 if !hasmapto("<leader>d",'n')
-    nnoremap <script> <silent> <buffer> <leader>d "=strftime("%Y-%m-%d")<CR>P
+    nnoremap <script> <silent> <buffer> <leader>d 0"=strftime("%Y-%m-%d ")<CR>P
 endif
 
 if !hasmapto("date<Tab>",'i')
@@ -37,7 +37,7 @@ endif
 
 " Mark done {{{2
 if !hasmapto("<leader>D",'n')
-    nnoremap <script> <silent> <buffer> <leader>D ix  <ESC>"=strftime("%Y-%m-%d")<CR>P
+    nnoremap <script> <silent> <buffer> <leader>D 0"=strftime("x %Y-%m-%d ")<CR>P
 endif
 
 " Folding {{{1
