@@ -16,6 +16,22 @@ set cpo&vim
 setlocal textwidth=0
 setlocal wrapmargin=0
 
+" Functions {{{!
+function! s:TodoTxtRemovePriority()
+    normal! da)
+    :s/^\s\+//g
+endfunction
+
+function! s:TodoTxtPrependDate()
+    normal! 0"=strftime("%Y-%m-%d ")P
+endfunction
+
+function! TodoTxtMarkAsDone()
+    call s:TodoTxtRemovePriority()
+    call s:TodoTxtPrependDate()
+    normal! Ix 
+endfunction
+
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<leader>s",'n')
@@ -37,7 +53,11 @@ endif
 
 " Mark done {{{2
 if !hasmapto("<leader>D",'n')
-    nnoremap <script> <silent> <buffer> <leader>D 0"=strftime("x %Y-%m-%d ")<CR>P
+    nnoremap <script> <silent> <buffer> <leader>D :call TodoTxtMarkAsDone()<CR>
+endif
+
+if !hasmapto("<leader>D",'v')
+    vnoremap <script> <silent> <buffer> <leader>D :call TodoTxtMarkAsDone()<CR>
 endif
 
 " Folding {{{1
