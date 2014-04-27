@@ -18,18 +18,17 @@ setlocal wrapmargin=0
 
 " Functions {{{!
 function! s:TodoTxtRemovePriority()
-    normal! da)
-    :s/^\s\+//g
+    :s/^(\w)\s\+//ge
 endfunction
 
-function! s:TodoTxtPrependDate()
+function! TodoTxtPrependDate()
     normal! 0"=strftime("%Y-%m-%d ")P
 endfunction
 
 function! TodoTxtMarkAsDone()
     call s:TodoTxtRemovePriority()
-    call s:TodoTxtPrependDate()
-    normal! Ix 
+    call TodoTxtPrependDate()
+    normal! Ix 
 endfunction
 
 " Mappings {{{1
@@ -39,16 +38,16 @@ if !hasmapto("<leader>s",'n')
 endif
 
 " Insert date {{{2
-if !hasmapto("<leader>d",'n')
-    nnoremap <script> <silent> <buffer> <leader>d 0"=strftime("%Y-%m-%d ")<CR>P
-endif
-
 if !hasmapto("date<Tab>",'i')
     inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 endif
 
+if !hasmapto("<leader>d",'n')
+    nnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
+endif
+
 if !hasmapto("<leader>d",'v')
-    vnoremap <script> <silent> <buffer> <leader>d c<C-R>=strftime("%Y-%m-%d")<CR><Esc>
+    vnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
 endif
 
 " Mark done {{{2
