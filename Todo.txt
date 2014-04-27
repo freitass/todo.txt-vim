@@ -3,11 +3,11 @@
 (B) 2011-05-31 Start documentation @doc
 (C) 2011-06-01 Improve syntax file @syntax
 x 2014-04-27 2011-05-30 Contact main project for reference
-X 2011-05-30 Create README.markdown to be published in github @doc
-X 2011-05-30 Implement colorized priorities @syntax
-X 2011-05-30 Implement filetype detection @ftdetect
-X 2011-05-30 Sort lines per priority @ftplugin
-X 2011-05-31 Highlight date, project and context of tasks with no priority @syntax
-X 2011-05-31 Stop breaking lines automatically @ftplugin
-X 2011-06-06 Easier date input @ftplugin
-X 2011-06-06 Implement foldings @ftplugin
+x 2011-05-30 Create README.markdown to be published in github @doc
+x 2011-05-30 Implement colorized priorities @syntax
+x 2011-05-30 Implement filetype detection @ftdetect
+x 2011-05-30 Sort lines per priority @ftplugin
+x 2011-05-31 Highlight date, project and context of tasks with no priority @syntax
+x 2011-05-31 Stop breaking lines automatically @ftplugin
+x 2011-06-06 Easier date input @ftplugin
+x 2011-06-06 Implement foldings @ftplugin

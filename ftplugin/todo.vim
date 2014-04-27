@@ -31,6 +31,10 @@ function! TodoTxtMarkAsDone()
     normal! Ix 
 endfunction
 
+function! TodoTxtMarkAllAsDone()
+    :g!/^x /TodoTxtMarkAsDone()
+endfunction
+
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<leader>s",'n')
@@ -57,6 +61,11 @@ endif
 
 if !hasmapto("<leader>D",'v')
     vnoremap <script> <silent> <buffer> <leader>D :call TodoTxtMarkAsDone()<CR>
+endif
+
+" Mark all done {{{2
+if !hasmapto("DD",'n')
+    nnoremap <script> <silent> <buffer> DD :call TodoTxtMarkAllAsDone()<CR>
 endif
 
 " Folding {{{1

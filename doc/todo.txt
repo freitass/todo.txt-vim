@@ -3,12 +3,14 @@
 ==============================================================================
 COMMANDS                                                       *todo-commands*
 
-`<Leader>-s` : Sort the file
+`<leader>-s` : Sort the file
 
-`<Leader>-d` : Insert the current date
+`<leader>-d` : Insert the current date
 
-`<Leader>-D` : Insert the current date with leading `x` (completed)
+`<leader>-D` : Mark task as done (inserts current date as completion date)
 
-`date<tab>` : (Insert mode) Insert the current date
+`DD`         : Mark all tasks as completed
 
-<Leader> is \ by default, so <Leader>-s means you type \s
+`date<tab>`  : (Insert mode) Insert the current date
+
+<leader> is \ by default, so <leader>-s means you type \s
