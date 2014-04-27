@@ -2,7 +2,7 @@
 (A) 2011-06-06 Check file syntax @syntax
 (B) 2011-05-31 Start documentation @doc
 (C) 2011-06-01 Improve syntax file @syntax
-2011-05-30 Contact main project for reference
+x 2014-04-27 2011-05-30 Contact main project for reference
 X 2011-05-30 Create README.markdown to be published in github @doc
 X 2011-05-30 Implement colorized priorities @syntax
 X 2011-05-30 Implement filetype detection @ftdetect
