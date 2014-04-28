@@ -32,7 +32,11 @@ function! TodoTxtMarkAsDone()
 endfunction
 
 function! TodoTxtMarkAllAsDone()
-    :g!/^x /TodoTxtMarkAsDone()
+    :g!/^x /:call TodoTxtMarkAsDone()
+endfunction
+
+function! TodoTxtRemoveCompleted()
+    :g/^x /d
 endfunction
 
 " Mappings {{{1
@@ -55,17 +59,22 @@ if !hasmapto("<leader>d",'v')
 endif
 
 " Mark done {{{2
-if !hasmapto("<leader>D",'n')
-    nnoremap <script> <silent> <buffer> <leader>D :call TodoTxtMarkAsDone()<CR>
+if !hasmapto("<leader>x",'n')
+    nnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
 endif
 
-if !hasmapto("<leader>D",'v')
-    vnoremap <script> <silent> <buffer> <leader>D :call TodoTxtMarkAsDone()<CR>
+if !hasmapto("<leader>x",'v')
+    vnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
 endif
 
 " Mark all done {{{2
-if !hasmapto("DD",'n')
-    nnoremap <script> <silent> <buffer> DD :call TodoTxtMarkAllAsDone()<CR>
+if !hasmapto("<leader>X",'n')
+    nnoremap <script> <silent> <buffer> <leader>X :call TodoTxtMarkAllAsDone()<CR>
+endif
+
+" Remove completed {{{2
+if !hasmapto("<leader>D",'n')
+    nnoremap <script> <silent> <buffer> <leader>D :call TodoTxtRemoveCompleted()<CR>
 endif
 
 " Folding {{{1

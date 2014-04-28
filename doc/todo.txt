@@ -7,10 +7,12 @@ COMMANDS                                                       *todo-commands*
 
 `<leader>-d` : Insert the current date
 
-`<leader>-D` : Mark task as done (inserts current date as completion date)
-
-`DD`         : Mark all tasks as completed
-
 `date<tab>`  : (Insert mode) Insert the current date
+
+`<leader>-x` : Mark task as done (inserts current date as completion date)
+
+`<leader>-X` : Mark all tasks as completed
+
+`<leader>-D` : Remove completed tasks
 
 <leader> is \ by default, so <leader>-s means you type \s
