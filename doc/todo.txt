@@ -3,7 +3,11 @@
 ==============================================================================
 COMMANDS                                                       *todo-commands*
 
-`<leader>-s` : Sort the file
+`<leader>-s` : Sort the file by priority
+
+`<leader>-sp` : Sort the file by project then by priority
+
+`<leader>-sc` : Sort the file by context then by priority
 
 `<leader>-d` : Insert the current date
 
@@ -16,3 +20,19 @@ COMMANDS                                                       *todo-commands*
 `<leader>-D` : Remove completed tasks
 
 <leader> is \ by default, so <leader>-s means you type \s
+
+===============================================================================
+CONFIGURATION                                              *todo-configuration*
+
+The user can give argument for the two calls to vim sort function by changing
+the following variables:
+
+g:Todo_txt_first_level_sort_mode
+g:Todo_txt_second_level_sort_mode
+
+Defaults values are:
+
+g:Todo_txt_first_level_sort_mode="i"
+g:Todo_txt_second_level_sort_mode="i"
+
+For more information on the available flags see help :sort

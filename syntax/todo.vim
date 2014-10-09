@@ -42,9 +42,9 @@ syntax  match  TodoContext    ' @[^[:blank:]]\+'          contains=NONE
 
 " Other priority colours might be defined by the user
 highlight  default  link  TodoDone       Comment
-highlight  default  link  TodoPriorityA  Constant
-highlight  default  link  TodoPriorityB  Statement
-highlight  default  link  TodoPriorityC  Identifier
+highlight  default  link  TodoPriorityA  Identifier
+highlight  default  link  TodoPriorityB  statement
+highlight  default  link  TodoPriorityC  type
 highlight  default  link  TodoDate       PreProc
 highlight  default  link  TodoProject    Special
 highlight  default  link  TodoContext    Special
