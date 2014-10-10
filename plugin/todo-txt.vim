@@ -21,11 +21,19 @@ if (! exists("g:Todo_txt_third_level_sort_mode"))
 endif
 
 " Sort todo by (first) context
-noremap <localleader>sc :call Todo_txt_HierarchicalSort('@', '', 1)<CR>
-noremap <localleader>scp :call Todo_txt_HierarchicalSort('@', '+', 1)<CR>
+if !hasmapto("<localleader>sc",'n')
+    noremap <localleader>sc :call Todo_txt_HierarchicalSort('@', '', 1)<CR>
+endif
+if !hasmapto("<localleader>scp",'n')
+    noremap <localleader>scp :call Todo_txt_HierarchicalSort('@', '+', 1)<CR>
+endif
 " Sort todo by (first) project
-noremap <localleader>sp :call Todo_txt_HierarchicalSort('+', '',1)<CR>
-noremap <localleader>spc :call Todo_txt_HierarchicalSort('+', '@',0)<CR>
+if !hasmapto("<localleader>sp",'n')
+    noremap <localleader>sp :call Todo_txt_HierarchicalSort('+', '',1)<CR>
+endif
+if !hasmapto("<localleader>spc",'n')
+    noremap <localleader>spc :call Todo_txt_HierarchicalSort('+', '@',0)<CR>
+endif
 
 " This is a Hierarchical sort designed for todo.txt todo lists, however it
 " might be used for other files types
