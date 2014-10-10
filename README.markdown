@@ -23,28 +23,30 @@ a nice two level sorting function designed for todo.txt files (see section
 This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few
 mappings, to help with edition of these files:
 
-`<leader>-s` : Sort the file
+`<LocalLeader>-s` : Sort the file
 
-`<leader>-d` : Insert the current date
+`<LocalLeader>-d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<leader>-x` : Mark task as done (inserts current date as completion date)
+`<LocalLeader>-x` : Mark task as done (inserts current date as completion date)
 
-`<leader>-X` : Mark all tasks as completed
+`<LocalLeader>-X` : Mark all tasks as completed
 
-`<leader>-D` : Remove completed tasks
+`<LocalLeader>-D` : Remove completed tasks
 
 If you want the help installed run ":helptags ~/.vim/doc" inside vim after having copied the files.
 Then you will be able to get the commands help with: :h todo.txt
 
 ## New features
 
-This fork provides a two level sorting function designed to do by project or
-by context sorts, with a priority sort.
+This fork provides a hierarchical sorting function designed to do by project
+and/or by context sorts and a priority sort.
 
-`<leader>-sc` : Sort the file by context (reverse) then by priority
-`<leader>-sp` : Sort the file by project (reverse) then by priority
+`<LocalLeader>-sc` : Sort the file by context then by priority
+`<LocalLeader>-scp` : Sort the file by context, project then by priority
+`<LocalLeader>-sp` : Sort the file by project then by priority
+`<LocalLeader>-spc` : Sort the file by project, context then by priority
 
 The user can give argument for the two call to vim sort function by changing
 the following variables in its vimrc:
