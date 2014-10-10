@@ -41,8 +41,8 @@ endfunction
 
 " Mappings {{{1
 " Sort tasks {{{2
-if !hasmapto("<leader>s",'n')
-    nnoremap <script> <silent> <buffer> <leader>s :sort<CR>
+if !hasmapto("<localleader>s",'n')
+    nnoremap <script> <silent> <buffer> <localleader>s :sort<CR>
 endif
 
 " Insert date {{{2
@@ -50,31 +50,31 @@ if !hasmapto("date<Tab>",'i')
     inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 endif
 
-if !hasmapto("<leader>d",'n')
-    nnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
+if !hasmapto("<localleader>d",'n')
+    nnoremap <script> <silent> <buffer> <localleader>d :call TodoTxtPrependDate()<CR>
 endif
 
-if !hasmapto("<leader>d",'v')
-    vnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
+if !hasmapto("<localleader>d",'v')
+    vnoremap <script> <silent> <buffer> <localleader>d :call TodoTxtPrependDate()<CR>
 endif
 
 " Mark done {{{2
-if !hasmapto("<leader>x",'n')
-    nnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
+if !hasmapto("<localleader>x",'n')
+    nnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtMarkAsDone()<CR>
 endif
 
-if !hasmapto("<leader>x",'v')
-    vnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
+if !hasmapto("<localleader>x",'v')
+    vnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtMarkAsDone()<CR>
 endif
 
 " Mark all done {{{2
-if !hasmapto("<leader>X",'n')
-    nnoremap <script> <silent> <buffer> <leader>X :call TodoTxtMarkAllAsDone()<CR>
+if !hasmapto("<localleader>X",'n')
+    nnoremap <script> <silent> <buffer> <localleader>X :call TodoTxtMarkAllAsDone()<CR>
 endif
 
 " Remove completed {{{2
-if !hasmapto("<leader>D",'n')
-    nnoremap <script> <silent> <buffer> <leader>D :call TodoTxtRemoveCompleted()<CR>
+if !hasmapto("<localleader>D",'n')
+    nnoremap <script> <silent> <buffer> <localleader>D :call TodoTxtRemoveCompleted()<CR>
 endif
 
 " Folding {{{1
