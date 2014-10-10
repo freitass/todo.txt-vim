@@ -3,23 +3,27 @@
 ==============================================================================
 COMMANDS                                                       *todo-commands*
 
-`<leader>-s` : Sort the file by priority
+`<LocalLeader>-s` : Sort the file by priority
 
-`<leader>-sp` : Sort the file by project then by priority
+`<LocalLeader>-sc` : Sort the file by context then by priority
 
-`<leader>-sc` : Sort the file by context then by priority
+`<LocalLeader>-scp` : Sort the file by context, project then by priority
 
-`<leader>-d` : Insert the current date
+`<LocalLeader>-sp` : Sort the file by project then by priority
+
+`<LocalLeader>-spc` : Sort the file by project, context then by priority
+
+`<LocalLeader>-d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<leader>-x` : Mark task as done (inserts current date as completion date)
+`<LocalLeader>-x` : Mark task as done (inserts current date as completion date)
 
-`<leader>-X` : Mark all tasks as completed
+`<LocalLeader>-X` : Mark all tasks as completed
 
-`<leader>-D` : Remove completed tasks
+`<LocalLeader>-D` : Remove completed tasks
 
-<leader> is \ by default, so <leader>-s means you type \s
+<LocalLeader> is \ by default, so <leader>-s means you type \s
 
 ===============================================================================
 CONFIGURATION                                              *todo-configuration*
