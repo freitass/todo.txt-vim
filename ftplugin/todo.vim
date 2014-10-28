@@ -57,32 +57,26 @@ endif
 :set nf=octal,hex,alpha
 
 function! TodoTxtPrioritizeIncrease()
-    "normal! 0f)h<C-a>
     normal! 0f)h
 endfunction
 
 function! TodoTxtPrioritizeDecrease()
-    "normal! 0f)h<C-a>
     normal! 0f)h
 endfunction
 
 if !hasmapto("<leader>j",'n')
-    "nnoremap <script> <silent> <buffer> <leader>j 0f)h<C-a>
     nnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
 endif
 
 if !hasmapto("<leader>j",'v')
-    "vnoremap <script> <silent> <buffer> <leader>j 0f)h<C-a>
     vnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
 endif
 
 if !hasmapto("<leader>k",'n')
-    "nnoremap <script> <silent> <buffer> <leader>k 0f)h<C-x>
     nnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
 endif
 
 if !hasmapto("<leader>k",'v')
-    "vnoremap <script> <silent> <buffer> <leader>k 0f)h<C-x>
     vnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
 endif
 
