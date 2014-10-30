@@ -45,6 +45,41 @@ if !hasmapto("<leader>s",'n')
     nnoremap <script> <silent> <buffer> <leader>s :sort<CR>
 endif
 
+if !hasmapto("<leader>s@",'n')
+    nnoremap <script> <silent> <buffer> <leader>s@ :sort /.\{-}\ze@/ <CR>
+endif
+
+if !hasmapto("<leader>s+",'n')
+    nnoremap <script> <silent> <buffer> <leader>s+ :sort /.\{-}\ze+/ <CR>
+endif
+
+" Increment and Decrement The Priority
+:set nf=octal,hex,alpha
+
+function! TodoTxtPrioritizeIncrease()
+    normal! 0f)h
+endfunction
+
+function! TodoTxtPrioritizeDecrease()
+    normal! 0f)h
+endfunction
+
+if !hasmapto("<leader>j",'n')
+    nnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+endif
+
+if !hasmapto("<leader>j",'v')
+    vnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+endif
+
+if !hasmapto("<leader>k",'n')
+    nnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+endif
+
+if !hasmapto("<leader>k",'v')
+    vnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+endif
+
 " Insert date {{{2
 if !hasmapto("date<Tab>",'i')
     inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
