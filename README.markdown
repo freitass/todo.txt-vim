@@ -10,6 +10,20 @@ mappings, to help with edition of these files:
 
 `<leader>-s` : Sort the file
 
+`<leader>-s+` : Sort the file on +Projects
+
+`<leader>-s@` : Sort the file on @Contexts
+
+`<leader>-j` : Lower the priority of the current line
+
+`<leader>-k` : Increase the priority of the current line
+
+`<leader>-a` : Add the priority (A) to the current line
+
+`<leader>-c` : Add the priority (B) to the current line
+
+`<leader>-b` : Add the priority (C) to the current line
+
 `<leader>-d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date

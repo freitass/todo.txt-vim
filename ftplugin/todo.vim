@@ -45,6 +45,74 @@ if !hasmapto("<leader>s",'n')
     nnoremap <script> <silent> <buffer> <leader>s :sort<CR>
 endif
 
+if !hasmapto("<leader>s@",'n')
+    nnoremap <script> <silent> <buffer> <leader>s@ :sort /.\{-}\ze@/ <CR>
+endif
+
+if !hasmapto("<leader>s+",'n')
+    nnoremap <script> <silent> <buffer> <leader>s+ :sort /.\{-}\ze+/ <CR>
+endif
+
+" Increment and Decrement The Priority
+:set nf=octal,hex,alpha
+
+function! TodoTxtPrioritizeIncrease()
+    normal! 0f)h
+endfunction
+
+function! TodoTxtPrioritizeDecrease()
+    normal! 0f)h
+endfunction
+
+function! TodoTxtPrioritizeAdd (priority)
+    " Need to figure out how to only do this if the first visible letter in a line is not (
+    :call TodoTxtPrioritizeAddAction(a:priority)
+endfunction
+
+function! TodoTxtPrioritizeAddAction (priority)
+    execute "normal! mq0i(".a:priority.") \<esc>`q"
+endfunction
+
+if !hasmapto("<leader>j",'n')
+    nnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+endif
+
+if !hasmapto("<leader>j",'v')
+    vnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+endif
+
+if !hasmapto("<leader>k",'n')
+    nnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+endif
+
+if !hasmapto("<leader>k",'v')
+    vnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+endif
+
+if !hasmapto("<leader>a",'n')
+    nnoremap <script> <silent> <buffer> <leader>a :call TodoTxtPrioritizeAdd('A')<CR>
+endif
+
+if !hasmapto("<leader>a",'v')
+    vnoremap <script> <silent> <buffer> <leader>a :call TodoTxtPrioritizeAdd('A')<CR>
+endif
+
+if !hasmapto("<leader>b",'n')
+    nnoremap <script> <silent> <buffer> <leader>b :call TodoTxtPrioritizeAdd('B')<CR>
+endif
+
+if !hasmapto("<leader>b",'v')
+    vnoremap <script> <silent> <buffer> <leader>b :call TodoTxtPrioritizeAdd('B')<CR>
+endif
+
+if !hasmapto("<leader>c",'n')
+    nnoremap <script> <silent> <buffer> <leader>c :call TodoTxtPrioritizeAdd('C')<CR>
+endif
+
+if !hasmapto("<leader>c",'v')
+    vnoremap <script> <silent> <buffer> <leader>c :call TodoTxtPrioritizeAdd('C')<CR>
+endif
+
 " Insert date {{{2
 if !hasmapto("date<Tab>",'i')
     inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
