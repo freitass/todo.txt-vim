@@ -27,6 +27,6 @@ COMMANDS                                                       *todo-commands*
 
 `<leader>-X` : Mark all tasks as completed
 
-`<leader>-D` : Remove completed tasks
+`<leader>-D` : Move completed tasks to done.txt
 
 <leader> is \ by default, so <leader>-s means you type \s

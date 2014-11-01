@@ -1,4 +1,3 @@
-2014-11-01 Find a way to import text into markdown and vim doc @doc
 x 2011-05-30 Create README.markdown to be published in github @doc
 x 2011-05-30 Implement colorized priorities @syntax
 x 2011-05-30 Implement filetype detection @ftdetect

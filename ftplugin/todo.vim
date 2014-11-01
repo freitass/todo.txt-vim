@@ -35,8 +35,33 @@ function! TodoTxtMarkAllAsDone()
     :g!/^x /:call TodoTxtMarkAsDone()
 endfunction
 
+function! s:AppendToFile(file, lines)
+    let l:lines = []
+
+    " Place existing tasks in done.txt at the beggining of the list.
+    if filereadable(a:file)
+        call extend(l:lines, readfile(a:file))
+    endif
+
+    " Append new completed tasks to the list.
+    call extend(l:lines, a:lines)
+
+    " Write to file.
+    call writefile(l:lines, a:file)
+endfunction
+
 function! TodoTxtRemoveCompleted()
-    :g/^x /d
+    " Check if we can write to done.txt before proceeding.
+    let l:target_dir = expand('%:p:h')
+    let l:done_file = l:target_dir.'/done.txt'
+    if !filewritable(l:done_file) && !filewritable(l:target_dir)
+        echoerr "Can't write to file 'done.txt'"
+        return
+    endif
+
+    let l:completed = []
+    :g/^x /call add(l:completed, getline(line(".")))|d
+    call s:AppendToFile(l:done_file, l:completed)
 endfunction
 
 " Mappings {{{1

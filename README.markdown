@@ -31,7 +31,7 @@ This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. 
 
 `<leader>-X` : Mark all tasks as completed
 
-`<leader>-D` : Remove completed tasks
+`<leader>-D` : Move completed tasks to done.txt
 
 If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
 Then you will be able to get the commands help with: :h todo.txt
