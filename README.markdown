@@ -6,7 +6,7 @@
 
 
 This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few
-mappings, to help with edition of these files:
+mappings, to help with editing these files:
 
 `<leader>-s` : Sort the file
 
@@ -28,5 +28,5 @@ mappings, to help with edition of these files:
 
 `<leader>-D` : Remove completed tasks
 
-If you want the help installed run ":helptags ~/.vim/doc" inside vim after having copied the files.
+If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
 Then you will be able to get the commands help with: :h todo.txt

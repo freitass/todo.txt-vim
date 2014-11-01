@@ -1,8 +1,8 @@
 " File:        todo.txt.vim
 " Description: Todo.txt filetype detection
 " Author:      Leandro Freitas <freitass@gmail.com>
-" Licence:     Vim licence
-" Website:     http://github.com/freitass/todo.txt.vim
+" License:     Vim license
+" Website:     http://github.com/freitass/todo.txt-vim
 " Version:     0.4
 
 " Save context {{{1
@@ -28,7 +28,7 @@ endfunction
 function! TodoTxtMarkAsDone()
     call s:TodoTxtRemovePriority()
     call TodoTxtPrependDate()
-    normal! Ix 
+    normal! Ix
 endfunction
 
 function! TodoTxtMarkAllAsDone()
