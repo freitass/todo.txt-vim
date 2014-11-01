@@ -5,8 +5,7 @@
     cp -R * ~/.vim
 
 
-This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few
-mappings, to help with editing these files:
+This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few mappings, to help with editing these files:
 
 `<leader>-s` : Sort the file
 

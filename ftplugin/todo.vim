@@ -16,7 +16,7 @@ set cpo&vim
 setlocal textwidth=0
 setlocal wrapmargin=0
 
-" Functions {{{!
+" Functions {{{1
 function! s:TodoTxtRemovePriority()
     :s/^(\w)\s\+//ge
 endfunction
@@ -28,7 +28,7 @@ endfunction
 function! TodoTxtMarkAsDone()
     call s:TodoTxtRemovePriority()
     call TodoTxtPrependDate()
-    normal! Ix
+    normal! Ix 
 endfunction
 
 function! TodoTxtMarkAllAsDone()
