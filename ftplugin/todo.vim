@@ -25,10 +25,23 @@ function! TodoTxtPrependDate()
     normal! 0"=strftime("%Y-%m-%d ")P
 endfunction
 
+function! TodoTxtToggleMarkAsDone()
+    if (getline(".") =~ "\s*x.*")
+        :call TodoTxtUnMarkAsDone()
+    else
+        :call TodoTxtMarkAsDone()
+    endif
+endfunction
+
+function! TodoTxtUnMarkAsDone()
+    :s/\s*x\s*[0-9]\{4}-[0-9]\{1,2}-[0-9]\{1,2}//g
+    normal li
+endfunction
+
 function! TodoTxtMarkAsDone()
-    call s:TodoTxtRemovePriority()
-    call TodoTxtPrependDate()
-    normal! Ix 
+ "       call s:TodoTxtRemovePriority()
+        call TodoTxtPrependDate()
+        normal! Ix 
 endfunction
 
 function! TodoTxtMarkAllAsDone()
@@ -60,11 +73,11 @@ endif
 
 " Mark done {{{2
 if !hasmapto("<localleader>x",'n')
-    nnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtMarkAsDone()<CR>
+    nnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtToggleMarkAsDone()<CR>
 endif
 
 if !hasmapto("<localleader>x",'v')
-    vnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtMarkAsDone()<CR>
+    vnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtToggleMarkAsDone()<CR>
 endif
 
 " Mark all done {{{2
