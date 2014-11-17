@@ -27,7 +27,6 @@ endfunction
 
 function! TodoTxtToggleMarkAsDone()
     if (getline(".") =~ 'x\s*\d\{4\}')
-        echo getline(".")
         :call TodoTxtUnMarkAsDone()
     else
         :call TodoTxtMarkAsDone()
