@@ -17,7 +17,8 @@ COMMANDS                                                       *todo-commands*
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<LocalLeader>-x` : Mark task as done (inserts current date as completion date)
+`<LocalLeader>-x` : Toggle mark task as done (inserts or remove current date as 
+                    completion date)
 
 `<LocalLeader>-X` : Mark all tasks as completed
 
