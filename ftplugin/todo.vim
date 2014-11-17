@@ -26,7 +26,8 @@ function! TodoTxtPrependDate()
 endfunction
 
 function! TodoTxtToggleMarkAsDone()
-    if (getline(".") =~ "\s*x.*")
+    if (getline(".") =~ 'x\s*\d\{4\}')
+        echo getline(".")
         :call TodoTxtUnMarkAsDone()
     else
         :call TodoTxtMarkAsDone()
@@ -34,8 +35,7 @@ function! TodoTxtToggleMarkAsDone()
 endfunction
 
 function! TodoTxtUnMarkAsDone()
-    :s/\s*x\s*[0-9]\{4}-[0-9]\{1,2}-[0-9]\{1,2}//g
-    normal li
+    :s/\s*x\s*\d\{4}-\d\{1,2}-\d\{1,2}\s*//g
 endfunction
 
 function! TodoTxtMarkAsDone()
