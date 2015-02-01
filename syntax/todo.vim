@@ -1,8 +1,8 @@
 " File:        todo.txt.vim
 " Description: Todo.txt syntax settings
 " Author:      Leandro Freitas <freitass@gmail.com>
-" Licence:     Vim licence
-" Website:     http://github.com/freitass/todo.txt.vim
+" License:     Vim license
+" Website:     http://github.com/freitass/todo.txt-vim
 " Version:     0.3
 
 if exists("b:current_syntax")
@@ -37,8 +37,8 @@ syntax  match  TodoPriorityX  '^([xX])\s.\+$'             contains=TodoDate,Todo
 syntax  match  TodoPriorityY  '^([yY])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
 syntax  match  TodoPriorityZ  '^([zZ])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
 syntax  match  TodoDate       '\d\{2,4\}-\d\{2\}-\d\{2\}' contains=NONE
-syntax  match  TodoProject    ' +[^[:blank:]]\+'          contains=NONE
-syntax  match  TodoContext    ' @[^[:blank:]]\+'          contains=NONE
+syntax  match  TodoProject    '\(^\|\W\)+[^[:blank:]]\+'  contains=NONE
+syntax  match  TodoContext    '\(^\|\W\)@[^[:blank:]]\+'  contains=NONE
 
 " Other priority colours might be defined by the user
 highlight  default  link  TodoDone       Comment

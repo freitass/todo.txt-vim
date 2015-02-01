@@ -1,8 +1,8 @@
 " File:        todo.txt.vim
 " Description: Todo.txt filetype detection
 " Author:      Leandro Freitas <freitass@gmail.com>
-" Licence:     Vim licence
-" Website:     http://github.com/freitass/todo.txt.vim
+" License:     Vim license
+" Website:     http://github.com/freitass/todo.txt-vim
 " Version:     0.4
 
 " Save context {{{1
@@ -16,7 +16,7 @@ set cpo&vim
 setlocal textwidth=0
 setlocal wrapmargin=0
 
-" Functions {{{!
+" Functions {{{1
 function! s:TodoTxtRemovePriority()
     :s/^(\w)\s\+//ge
 endfunction
@@ -47,14 +47,107 @@ function! TodoTxtMarkAllAsDone()
     :g!/^x /:call TodoTxtMarkAsDone()
 endfunction
 
+function! s:AppendToFile(file, lines)
+    let l:lines = []
+
+    " Place existing tasks in done.txt at the beggining of the list.
+    if filereadable(a:file)
+        call extend(l:lines, readfile(a:file))
+    endif
+
+    " Append new completed tasks to the list.
+    call extend(l:lines, a:lines)
+
+    " Write to file.
+    call writefile(l:lines, a:file)
+endfunction
+
 function! TodoTxtRemoveCompleted()
-    :g/^x /d
+    " Check if we can write to done.txt before proceeding.
+    let l:target_dir = expand('%:p:h')
+    let l:done_file = l:target_dir.'/done.txt'
+    if !filewritable(l:done_file) && !filewritable(l:target_dir)
+        echoerr "Can't write to file 'done.txt'"
+        return
+    endif
+
+    let l:completed = []
+    :g/^x /call add(l:completed, getline(line(".")))|d
+    call s:AppendToFile(l:done_file, l:completed)
 endfunction
 
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<localleader>s",'n')
     nnoremap <script> <silent> <buffer> <localleader>s :sort<CR>
+endif
+
+if !hasmapto("<LocalLeader>s@",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>s@ :sort /.\{-}\ze@/ <CR>
+endif
+
+if !hasmapto("<LocalLeader>s+",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>s+ :sort /.\{-}\ze+/ <CR>
+endif
+
+" Increment and Decrement The Priority
+:set nf=octal,hex,alpha
+
+function! TodoTxtPrioritizeIncrease()
+    normal! 0f)h
+endfunction
+
+function! TodoTxtPrioritizeDecrease()
+    normal! 0f)h
+endfunction
+
+function! TodoTxtPrioritizeAdd (priority)
+    " Need to figure out how to only do this if the first visible letter in a line is not (
+    :call TodoTxtPrioritizeAddAction(a:priority)
+endfunction
+
+function! TodoTxtPrioritizeAddAction (priority)
+    execute "normal! mq0i(".a:priority.") \<esc>`q"
+endfunction
+
+if !hasmapto("<LocalLeader>j",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>j :call TodoTxtPrioritizeIncrease()<CR>
+endif
+
+if !hasmapto("<LocalLeader>j",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>j :call TodoTxtPrioritizeIncrease()<CR>
+endif
+
+if !hasmapto("<LocalLeader>k",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>k :call TodoTxtPrioritizeDecrease()<CR>
+endif
+
+if !hasmapto("<LocalLeader>k",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>k :call TodoTxtPrioritizeDecrease()<CR>
+endif
+
+if !hasmapto("<LocalLeader>a",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>a :call TodoTxtPrioritizeAdd('A')<CR>
+endif
+
+if !hasmapto("<LocalLeader>a",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>a :call TodoTxtPrioritizeAdd('A')<CR>
+endif
+
+if !hasmapto("<LocalLeader>b",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>b :call TodoTxtPrioritizeAdd('B')<CR>
+endif
+
+if !hasmapto("<LocalLeader>b",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>b :call TodoTxtPrioritizeAdd('B')<CR>
+endif
+
+if !hasmapto("<LocalLeader>c",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>c :call TodoTxtPrioritizeAdd('C')<CR>
+endif
+
+if !hasmapto("<LocalLeader>c",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>c :call TodoTxtPrioritizeAdd('C')<CR>
 endif
 
 " Insert date {{{2

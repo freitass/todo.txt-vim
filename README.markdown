@@ -20,10 +20,23 @@ a nice two level sorting function designed for todo.txt files (see section
 
 ## Features included in Freitass version
 
-This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few
-mappings, to help with edition of these files:
+This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few mappings, to help with editing these files:
 
 `<LocalLeader>-s` : Sort the file
+
+`<LocalLeader>-s+` : Sort the file on +Projects
+
+`<LocalLeader>-s@` : Sort the file on @Contexts
+
+`<LocalLeader>-j` : Lower the priority of the current line
+
+`<LocalLeader>-k` : Increase the priority of the current line
+
+`<LocalLeader>-a` : Add the priority (A) to the current line
+
+`<LocalLeader>-b` : Add the priority (B) to the current line
+
+`<LocalLeader>-c` : Add the priority (C) to the current line
 
 `<LocalLeader>-d` : Insert the current date
 
@@ -33,9 +46,9 @@ mappings, to help with edition of these files:
 
 `<LocalLeader>-X` : Mark all tasks as completed
 
-`<LocalLeader>-D` : Remove completed tasks
+`<leader>-D` : Move completed tasks to done.txt
 
-If you want the help installed run ":helptags ~/.vim/doc" inside vim after having copied the files.
+If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
 Then you will be able to get the commands help with: :h todo.txt
 
 ## New features

@@ -5,6 +5,10 @@ COMMANDS                                                       *todo-commands*
 
 `<LocalLeader>-s` : Sort the file by priority
 
+`<LocalLeader>-s+` : Sort the file on +Projects
+
+`<LocalLeader>-s@` : Sort the file on @Contexts
+
 `<LocalLeader>-sc` : Sort the file by context then by priority
 
 `<LocalLeader>-scp` : Sort the file by context, project then by priority
@@ -12,6 +16,16 @@ COMMANDS                                                       *todo-commands*
 `<LocalLeader>-sp` : Sort the file by project then by priority
 
 `<LocalLeader>-spc` : Sort the file by project, context then by priority
+
+`<LocalLeader>-j` : Lower the priority of the current line
+
+`<LocalLeader>-k` : Increase the priority of the current line
+
+`<LocalLeader>-a` : Add the priority (A) to the current line
+
+`<LocalLeader>-b` : Add the priority (B) to the current line
+
+`<LocalLeader>-c` : Add the priority (C) to the current line
 
 `<LocalLeader>-d` : Insert the current date
 
@@ -22,7 +36,7 @@ COMMANDS                                                       *todo-commands*
 
 `<LocalLeader>-X` : Mark all tasks as completed
 
-`<LocalLeader>-D` : Remove completed tasks
+`<LocalLeader>-D` : Move completed tasks to done.txt
 
 <LocalLeader> is \ by default, so <leader>-s means you type \s
 
@@ -39,5 +53,6 @@ Defaults values are:
 
 g:Todo_txt_first_level_sort_mode="i"
 g:Todo_txt_second_level_sort_mode="i"
+
 
 For more information on the available flags see help :sort
