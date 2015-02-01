@@ -87,7 +87,7 @@ endfunction
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<localleader>s",'n')
-    nnoremap <script> <silent> <buffer> <leader>s :call TodoTxtSort()<CR>
+    nnoremap <script> <silent> <buffer> <LocalLeader>s :call TodoTxtSort()<CR>
 endif
 
 if !hasmapto("<LocalLeader>s@",'n')
