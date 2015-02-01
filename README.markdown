@@ -42,7 +42,7 @@ This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. 
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<LocalLeader>-x` : Mark task as done (inserts current date as completion date)
+`<LocalLeader>-x` : Toggle mark task as done (inserts current date as completion date)
 
 `<LocalLeader>-X` : Mark all tasks as completed
 
@@ -66,6 +66,8 @@ the following variables in its vimrc:
 see :help sort
     let g:Todo_txt_first_level_sort_mode="! i"
     let g:Todo_txt_second_level_sort_mode="i"
+
+Also <LocalLeader>-x is a toggle which allow you to unmark a task as done.
 
 ## Todo
 
