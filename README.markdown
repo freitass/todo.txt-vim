@@ -67,7 +67,7 @@ see :help sort
     let g:Todo_txt_first_level_sort_mode="! i"
     let g:Todo_txt_second_level_sort_mode="i"
 
-Also <LocalLeader>-x is a toggle which allow you to unmark a task as done.
+Also `<LocalLeader>-x` is a toggle which allow you to unmark a task as done.
 
 ## Todo
 
