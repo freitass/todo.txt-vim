@@ -111,12 +111,15 @@ function! TodoTxtPrioritizeDecrease()
 endfunction
 
 function! TodoTxtPrioritizeAdd (priority)
+    let oldpos=getcurpos()
     let line=getline('.')
     if line !~ '^([A-F])'
         :call TodoTxtPrioritizeAddAction(a:priority)
+        let oldpos[2]+=4
     else
         exec ':s/^([A-F])/('.a:priority.')/'
     endif
+    call setpos('.',oldpos)
 endfunction
 
 function! TodoTxtPrioritizeAddAction (priority)
