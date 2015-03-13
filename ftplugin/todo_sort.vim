@@ -109,7 +109,7 @@ endfunction
 
 " Returns the list of groups starting by a:symbol between lines a:begin and
 " a:end
-function GetGroups(symbol,begin, end)
+function! GetGroups(symbol,begin, end)
     let l:curline=a:begin
     let l:groups=[]
     while l:curline <= a:end
