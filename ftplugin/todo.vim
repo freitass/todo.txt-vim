@@ -111,8 +111,12 @@ function! TodoTxtPrioritizeDecrease()
 endfunction
 
 function! TodoTxtPrioritizeAdd (priority)
-    " Need to figure out how to only do this if the first visible letter in a line is not (
-    :call TodoTxtPrioritizeAddAction(a:priority)
+    let line=getline('.')
+    if line !~ '^([A-F])'
+        :call TodoTxtPrioritizeAddAction(a:priority)
+    else
+        exec ':s/^([A-F])/('.a:priority.')/'
+    endif
 endfunction
 
 function! TodoTxtPrioritizeAddAction (priority)
