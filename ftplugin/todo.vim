@@ -16,6 +16,7 @@ set cpo&vim
 setlocal textwidth=0
 setlocal wrapmargin=0
 
+
 " Functions {{{1
 function! s:TodoTxtRemovePriority()
     :s/^(\w)\s\+//ge
@@ -38,9 +39,9 @@ function! TodoTxtUnMarkAsDone()
 endfunction
 
 function! TodoTxtMarkAsDone()
- "       call s:TodoTxtRemovePriority()
-        call TodoTxtPrependDate()
-        normal! Ix 
+    "       call s:TodoTxtRemovePriority()
+    call TodoTxtPrependDate()
+    normal! Ix 
 endfunction
 
 function! TodoTxtMarkAllAsDone()
@@ -217,6 +218,40 @@ function! TodoFoldText()
                 \ . (v:foldend - v:foldstart + 1)
                 \ . ' Completed tasks '
 endfunction
+
+" Intelligent completion for projects and Contexts
+fun! TodoComplete(findstart, base)
+    if a:findstart
+        let line = getline('.')
+        let start = col('.') - 1
+        while start > 0 && line[start - 1] !~ '\s'
+            let start -= 1
+        endwhile
+        return start
+    else
+        let res = []
+        let file = readfile(expand("%:p"))
+        for line in file
+            if line =~ " ".a:base
+                let item={}
+                let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
+                if a:base =~ '+'
+                    let item.info="Context: ".substitute(line,'.*\s\(@\S\S*\).*','\1',"")
+                elseif a:base =~ '@'
+                    let l:pr=[]
+                    for line2 in file
+                        if line2 =~ l:item.word
+                            call add(l:pr,substitute(line2,'.*\s\(+\S\S*\).*','\1',""))
+                        endif
+                    endfor
+                    let item.info="Projects: ".join(uniq(l:pr), " ")
+                endif
+                call add(res,item)
+            endif
+        endfor
+        return res
+    endif
+endfun
 
 " Restore context {{{1
 let &cpo = s:save_cpo

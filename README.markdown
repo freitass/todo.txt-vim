@@ -3,8 +3,8 @@
 ## What is this plugin ?
 
 This plugin is a fork of freitass todo.txt (see section 1.3) vim plugin adding
-a nice two level sorting function designed for todo.txt files (see section
-1.4).
+a nice two level sorting function designed for todo.txt files and a complete
+function for context and projects (see section 1.4).
 
 ## Install
 
@@ -68,6 +68,28 @@ see :help sort
     let g:Todo_txt_second_level_sort_mode="i"
 
 Also `<LocalLeader>-x` is a toggle which allow you to unmark a task as done.
+
+We also provide a nice complete function for project and context, to use it
+add the following lines to your vimrc:
+
+" Use TodoComplete as the user complete
+au filetype todo setlocal completefunc=TodoComplete
+
+You can also start automatically the completion when entering '+' or '@' by
+adding the next lines to your vimrc:
+
+" Auto complete projects
+au filetype todo imap + +<C-X><C-U>
+" Auto complete contexts
+au filetype todo imap @ @<C-X><C-U>
+
+The TodoComplete function is designed to complete projects (starting by '+')
+and context (starting by '@'). If you use it on a regulard word, it will do a
+normal buffer completion.
+If you try to complete a project, it will propose all projects in the file and
+for each of them, it will show their context in the preview window.
+TodoCompelte does the same thing for context except that it gives in the
+preview the list of projects existing in each existing contexts.
 
 ## Todo
 
