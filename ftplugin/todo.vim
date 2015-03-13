@@ -146,6 +146,10 @@ if !hasmapto("<LocalLeader>a",'n')
     nnoremap <script> <silent> <buffer> <LocalLeader>a :call TodoTxtPrioritizeAdd('A')<CR>
 endif
 
+if !hasmapto("<LocalLeader>a",'i')
+    inoremap <script> <silent> <buffer> <LocalLeader>a <ESC>:call TodoTxtPrioritizeAdd('A')<CR>i
+endif
+
 if !hasmapto("<LocalLeader>a",'v')
     vnoremap <script> <silent> <buffer> <LocalLeader>a :call TodoTxtPrioritizeAdd('A')<CR>
 endif
@@ -154,12 +158,19 @@ if !hasmapto("<LocalLeader>b",'n')
     nnoremap <script> <silent> <buffer> <LocalLeader>b :call TodoTxtPrioritizeAdd('B')<CR>
 endif
 
+if !hasmapto("<LocalLeader>b",'i')
+    inoremap <script> <silent> <buffer> <LocalLeader>b <ESC>:call TodoTxtPrioritizeAdd('B')<CR>i
+endif
+
 if !hasmapto("<LocalLeader>b",'v')
     vnoremap <script> <silent> <buffer> <LocalLeader>b :call TodoTxtPrioritizeAdd('B')<CR>
 endif
 
 if !hasmapto("<LocalLeader>c",'n')
     nnoremap <script> <silent> <buffer> <LocalLeader>c :call TodoTxtPrioritizeAdd('C')<CR>
+endif
+if !hasmapto("<LocalLeader>c",'i')
+    inoremap <script> <silent> <buffer> <LocalLeader>c <ESC>:call TodoTxtPrioritizeAdd('C')<CR>i
 endif
 
 if !hasmapto("<LocalLeader>c",'v')
