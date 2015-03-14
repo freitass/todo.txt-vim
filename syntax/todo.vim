@@ -1,9 +1,9 @@
 " File:        todo.txt.vim
 " Description: Todo.txt syntax settings
-" Author:      Leandro Freitas <freitass@gmail.com>
+" Author:      Leandro Freitas <freitass@gmail.com>, David Beniamine <David@Beniamine.net>
 " License:     Vim license
-" Website:     http://github.com/freitass/todo.txt-vim
-" Version:     0.3
+" Website:     http://github.com/dbeniamine/todo.txt-vim
+" Version:     0.5
 
 if exists("b:current_syntax")
     finish

@@ -1,9 +1,9 @@
 " File:        todo.txt.vim
 " Description: Todo.txt filetype detection
-" Author:      Leandro Freitas <freitass@gmail.com>
+" Author:      Leandro Freitas <freitass@gmail.com>, David Beniamine <David@Beniamine.net>
 " License:     Vim license
-" Website:     http://github.com/freitass/todo.txt-vim
-" Version:     0.4
+" Website:     http://github.com/dbeniamine/todo.txt-vim
+" Version:     0.5
 
 " Save context {{{1
 let s:save_cpo = &cpo
