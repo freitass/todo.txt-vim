@@ -12,7 +12,7 @@ function for context and projects (see section 1.4).
 
     git clone https://github.com/dbeniamine/todo.txt-vim.git
     cd todo.txt-vim
-    cp -R * ~/.vim
+    cp -r ./* ~/.vim
 
 ### Pathogen install
 
