@@ -10,13 +10,13 @@ function for context and projects (see section 1.4).
 
 ### Quick install
 
-    git clone git://github.com/dbeniamine/todo.txt-vim.git
+    git clone https://github.com/dbeniamine/todo.txt-vim.git
     cd todo.txt-vim
     cp -R * ~/.vim
 
 ### Pathogen install
 
-    git clone git://github.com/dbeniamine/todo.txt-vim.git ~/.vim/bundle/todo.txt-vim
+    git clone https://github.com/dbeniamine/todo.txt-vim.git ~/.vim/bundle/todo.txt-vim
 
 ## Features included in Freitass version
 
