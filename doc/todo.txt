@@ -3,30 +3,81 @@
 ==============================================================================
 COMMANDS                                                       *todo-commands*
 
-`<leader>-s` : Sort the file
+`<LocalLeader>-s` : Sort the file by priority
 
-`<leader>-s+` : Sort the file on +Projects
+`<LocalLeader>-s+` : Sort the file on +Projects
 
-`<leader>-s@` : Sort the file on @Contexts
+`<LocalLeader>-s@` : Sort the file on @Contexts
 
-`<leader>-j` : Lower the priority of the current line
+`<LocalLeader>-sc` : Sort the file by context then by priority
 
-`<leader>-k` : Increase the priority of the current line
+`<LocalLeader>-scp` : Sort the file by context, project then by priority
 
-`<leader>-a` : Add the priority (A) to the current line
+`<LocalLeader>-sp` : Sort the file by project then by priority
 
-`<leader>-b` : Add the priority (B) to the current line
+`<LocalLeader>-spc` : Sort the file by project, context then by priority
 
-`<leader>-c` : Add the priority (C) to the current line
+`<LocalLeader>-j` : Lower the priority of the current line
 
-`<leader>-d` : Insert the current date
+`<LocalLeader>-k` : Increase the priority of the current line
+
+`<LocalLeader>-a` : Add the priority (A) to the current line
+
+`<LocalLeader>-b` : Add the priority (B) to the current line
+
+`<LocalLeader>-c` : Add the priority (C) to the current line
+
+`<LocalLeader>-d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<leader>-x` : Mark task as done (inserts current date as completion date)
+`<LocalLeader>-x` : Toggle mark task as done (inserts or remove current date as
+                    completion date)
 
-`<leader>-X` : Mark all tasks as completed
+`<LocalLeader>-X` : Mark all tasks as completed
 
-`<leader>-D` : Move completed tasks to done.txt
+`<LocalLeader>-D` : Move completed tasks to done.txt
 
-<leader> is \ by default, so <leader>-s means you type \s
+<LocalLeader> is \ by default, so <leader>-s means you type \s
+
+===============================================================================
+CONFIGURATION                                              *todo-configuration*
+
+The user can give argument for the two calls to vim sort function by changing
+the following variables:
+
+g:Todo_txt_first_level_sort_mode
+g:Todo_txt_second_level_sort_mode
+
+Defaults values are:
+
+g:Todo_txt_first_level_sort_mode="i"
+g:Todo_txt_second_level_sort_mode="i"
+
+
+For more information on the available flags see help :sort
+
+We also provide a nice complete function for project and context, to use it
+add the following lines to your vimrc:
+
+" Use TodoComplete as the user complete
+au filetype todo setlocal completefunc=TodoComplete
+
+You can also start automatically the completion when entering '+' or '@' by
+adding the next lines to your vimrc:
+
+" Auto complete projects
+au filetype todo imap + +<C-X><C-U>
+" Auto complete contexts
+au filetype todo imap @ @<C-X><C-U>
+
+===============================================================================
+COMPLETION                                                      *todo-complete*
+
+The TodoComplete function is designed to complete projects (starting by '+')
+and context (starting by '@'). If you use it on a regular word, it will do a
+normal buffer completion.
+If you try to complete a project, it will propose all projects in the file and
+for each of them, it will show their context in the preview window.
+TodoCompelte does the same thing for context except that it gives in the
+preview the list of projects existing in each existing contexts.

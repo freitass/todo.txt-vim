@@ -1,9 +1,9 @@
 " File:        todo.txt.vim
 " Description: Todo.txt syntax settings
-" Author:      Leandro Freitas <freitass@gmail.com>
+" Author:      Leandro Freitas <freitass@gmail.com>, David Beniamine <David@Beniamine.net>
 " License:     Vim license
-" Website:     http://github.com/freitass/todo.txt-vim
-" Version:     0.3
+" Website:     http://github.com/dbeniamine/todo.txt-vim
+" Version:     0.5
 
 if exists("b:current_syntax")
     finish
@@ -42,9 +42,9 @@ syntax  match  TodoContext    '\(^\|\W\)@[^[:blank:]]\+'  contains=NONE
 
 " Other priority colours might be defined by the user
 highlight  default  link  TodoDone       Comment
-highlight  default  link  TodoPriorityA  Constant
-highlight  default  link  TodoPriorityB  Statement
-highlight  default  link  TodoPriorityC  Identifier
+highlight  default  link  TodoPriorityA  Identifier
+highlight  default  link  TodoPriorityB  statement
+highlight  default  link  TodoPriorityC  type
 highlight  default  link  TodoDate       PreProc
 highlight  default  link  TodoProject    Special
 highlight  default  link  TodoContext    Special

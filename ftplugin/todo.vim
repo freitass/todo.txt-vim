@@ -1,9 +1,9 @@
 " File:        todo.txt.vim
 " Description: Todo.txt filetype detection
-" Author:      Leandro Freitas <freitass@gmail.com>
+" Author:      Leandro Freitas <freitass@gmail.com>, David Beniamine <David@Beniamine.net>
 " License:     Vim license
-" Website:     http://github.com/freitass/todo.txt-vim
-" Version:     0.4
+" Website:     http://github.com/dbeniamine/todo.txt-vim
+" Version:     0.5
 
 " Save context {{{1
 let s:save_cpo = &cpo
@@ -16,6 +16,7 @@ set cpo&vim
 setlocal textwidth=0
 setlocal wrapmargin=0
 
+
 " Functions {{{1
 function! s:TodoTxtRemovePriority()
     :s/^(\w)\s\+//ge
@@ -25,8 +26,20 @@ function! TodoTxtPrependDate()
     normal! 0"=strftime("%Y-%m-%d ")P
 endfunction
 
+function! TodoTxtToggleMarkAsDone()
+    if (getline(".") =~ 'x\s*\d\{4\}')
+        :call TodoTxtUnMarkAsDone()
+    else
+        :call TodoTxtMarkAsDone()
+    endif
+endfunction
+
+function! TodoTxtUnMarkAsDone()
+    :s/\s*x\s*\d\{4}-\d\{1,2}-\d\{1,2}\s*//g
+endfunction
+
 function! TodoTxtMarkAsDone()
-    call s:TodoTxtRemovePriority()
+    "       call s:TodoTxtRemovePriority()
     call TodoTxtPrependDate()
     normal! Ix 
 endfunction
@@ -64,18 +77,26 @@ function! TodoTxtRemoveCompleted()
     call s:AppendToFile(l:done_file, l:completed)
 endfunction
 
+function! TodoTxtSort()
+    " vim :sort is usually stable
+    " we sort first on contexts, then on projects and then on priority
+    :sort /@[a-zA-Z]*/ r
+    :sort /+[a-zA-Z]*/ r
+    :sort /\v\([A-Z]\)/ r
+endfunction
+
 " Mappings {{{1
 " Sort tasks {{{2
-if !hasmapto("<leader>s",'n')
-    nnoremap <script> <silent> <buffer> <leader>s :sort<CR>
+if !hasmapto("<localleader>s",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>s :call TodoTxtSort()<CR>
 endif
 
-if !hasmapto("<leader>s@",'n')
-    nnoremap <script> <silent> <buffer> <leader>s@ :sort /.\{-}\ze@/ <CR>
+if !hasmapto("<LocalLeader>s@",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>s@ :sort /.\{-}\ze@/ <CR>
 endif
 
-if !hasmapto("<leader>s+",'n')
-    nnoremap <script> <silent> <buffer> <leader>s+ :sort /.\{-}\ze+/ <CR>
+if !hasmapto("<LocalLeader>s+",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>s+ :sort /.\{-}\ze+/ <CR>
 endif
 
 " Increment and Decrement The Priority
@@ -90,52 +111,70 @@ function! TodoTxtPrioritizeDecrease()
 endfunction
 
 function! TodoTxtPrioritizeAdd (priority)
-    " Need to figure out how to only do this if the first visible letter in a line is not (
-    :call TodoTxtPrioritizeAddAction(a:priority)
+    let oldpos=getcurpos()
+    let line=getline('.')
+    if line !~ '^([A-F])'
+        :call TodoTxtPrioritizeAddAction(a:priority)
+        let oldpos[2]+=4
+    else
+        exec ':s/^([A-F])/('.a:priority.')/'
+    endif
+    call setpos('.',oldpos)
 endfunction
 
 function! TodoTxtPrioritizeAddAction (priority)
     execute "normal! mq0i(".a:priority.") \<esc>`q"
 endfunction
 
-if !hasmapto("<leader>j",'n')
-    nnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+if !hasmapto("<LocalLeader>j",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>j :call TodoTxtPrioritizeIncrease()<CR>
 endif
 
-if !hasmapto("<leader>j",'v')
-    vnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+if !hasmapto("<LocalLeader>j",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>j :call TodoTxtPrioritizeIncrease()<CR>
 endif
 
-if !hasmapto("<leader>k",'n')
-    nnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+if !hasmapto("<LocalLeader>k",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>k :call TodoTxtPrioritizeDecrease()<CR>
 endif
 
-if !hasmapto("<leader>k",'v')
-    vnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+if !hasmapto("<LocalLeader>k",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>k :call TodoTxtPrioritizeDecrease()<CR>
 endif
 
-if !hasmapto("<leader>a",'n')
-    nnoremap <script> <silent> <buffer> <leader>a :call TodoTxtPrioritizeAdd('A')<CR>
+if !hasmapto("<LocalLeader>a",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>a :call TodoTxtPrioritizeAdd('A')<CR>
 endif
 
-if !hasmapto("<leader>a",'v')
-    vnoremap <script> <silent> <buffer> <leader>a :call TodoTxtPrioritizeAdd('A')<CR>
+if !hasmapto("<LocalLeader>a",'i')
+    inoremap <script> <silent> <buffer> <LocalLeader>a <ESC>:call TodoTxtPrioritizeAdd('A')<CR>i
 endif
 
-if !hasmapto("<leader>b",'n')
-    nnoremap <script> <silent> <buffer> <leader>b :call TodoTxtPrioritizeAdd('B')<CR>
+if !hasmapto("<LocalLeader>a",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>a :call TodoTxtPrioritizeAdd('A')<CR>
 endif
 
-if !hasmapto("<leader>b",'v')
-    vnoremap <script> <silent> <buffer> <leader>b :call TodoTxtPrioritizeAdd('B')<CR>
+if !hasmapto("<LocalLeader>b",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>b :call TodoTxtPrioritizeAdd('B')<CR>
 endif
 
-if !hasmapto("<leader>c",'n')
-    nnoremap <script> <silent> <buffer> <leader>c :call TodoTxtPrioritizeAdd('C')<CR>
+if !hasmapto("<LocalLeader>b",'i')
+    inoremap <script> <silent> <buffer> <LocalLeader>b <ESC>:call TodoTxtPrioritizeAdd('B')<CR>i
 endif
 
-if !hasmapto("<leader>c",'v')
-    vnoremap <script> <silent> <buffer> <leader>c :call TodoTxtPrioritizeAdd('C')<CR>
+if !hasmapto("<LocalLeader>b",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>b :call TodoTxtPrioritizeAdd('B')<CR>
+endif
+
+if !hasmapto("<LocalLeader>c",'n')
+    nnoremap <script> <silent> <buffer> <LocalLeader>c :call TodoTxtPrioritizeAdd('C')<CR>
+endif
+if !hasmapto("<LocalLeader>c",'i')
+    inoremap <script> <silent> <buffer> <LocalLeader>c <ESC>:call TodoTxtPrioritizeAdd('C')<CR>i
+endif
+
+if !hasmapto("<LocalLeader>c",'v')
+    vnoremap <script> <silent> <buffer> <LocalLeader>c :call TodoTxtPrioritizeAdd('C')<CR>
 endif
 
 " Insert date {{{2
@@ -143,31 +182,31 @@ if !hasmapto("date<Tab>",'i')
     inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 endif
 
-if !hasmapto("<leader>d",'n')
-    nnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
+if !hasmapto("<localleader>d",'n')
+    nnoremap <script> <silent> <buffer> <localleader>d :call TodoTxtPrependDate()<CR>
 endif
 
-if !hasmapto("<leader>d",'v')
-    vnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
+if !hasmapto("<localleader>d",'v')
+    vnoremap <script> <silent> <buffer> <localleader>d :call TodoTxtPrependDate()<CR>
 endif
 
 " Mark done {{{2
-if !hasmapto("<leader>x",'n')
-    nnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
+if !hasmapto("<localleader>x",'n')
+    nnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtToggleMarkAsDone()<CR>
 endif
 
-if !hasmapto("<leader>x",'v')
-    vnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
+if !hasmapto("<localleader>x",'v')
+    vnoremap <script> <silent> <buffer> <localleader>x :call TodoTxtToggleMarkAsDone()<CR>
 endif
 
 " Mark all done {{{2
-if !hasmapto("<leader>X",'n')
-    nnoremap <script> <silent> <buffer> <leader>X :call TodoTxtMarkAllAsDone()<CR>
+if !hasmapto("<localleader>X",'n')
+    nnoremap <script> <silent> <buffer> <localleader>X :call TodoTxtMarkAllAsDone()<CR>
 endif
 
 " Remove completed {{{2
-if !hasmapto("<leader>D",'n')
-    nnoremap <script> <silent> <buffer> <leader>D :call TodoTxtRemoveCompleted()<CR>
+if !hasmapto("<localleader>D",'n')
+    nnoremap <script> <silent> <buffer> <localleader>D :call TodoTxtRemoveCompleted()<CR>
 endif
 
 " Folding {{{1
@@ -197,6 +236,40 @@ function! TodoFoldText()
                 \ . (v:foldend - v:foldstart + 1)
                 \ . ' Completed tasks '
 endfunction
+
+" Intelligent completion for projects and Contexts
+fun! TodoComplete(findstart, base)
+    if a:findstart
+        let line = getline('.')
+        let start = col('.') - 1
+        while start > 0 && line[start - 1] !~ '\s'
+            let start -= 1
+        endwhile
+        return start
+    else
+        let res = []
+        let file = readfile(expand("%:p"))
+        for line in file
+            if line =~ " ".a:base
+                let item={}
+                let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
+                if a:base =~ '+'
+                    let item.info="Context: ".substitute(line,'.*\s\(@\S\S*\).*','\1',"")
+                elseif a:base =~ '@'
+                    let l:pr=[]
+                    for line2 in file
+                        if line2 =~ l:item.word
+                            call add(l:pr,substitute(line2,'.*\s\(+\S\S*\).*','\1',""))
+                        endif
+                    endfor
+                    let item.info="Projects: ".join(uniq(l:pr), " ")
+                endif
+                call add(res,item)
+            endif
+        endfor
+        return res
+    endif
+endfun
 
 " Restore context {{{1
 let &cpo = s:save_cpo
