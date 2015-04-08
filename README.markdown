@@ -17,11 +17,11 @@ This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. 
 
 `<leader>-k` : Increase the priority of the current line
 
-`<leader>-a` : Add the priority (A) to the current line
+`<leader>-a` : Set the priority of the current line to (A)
 
-`<leader>-b` : Add the priority (B) to the current line
+`<leader>-b` : Set the priority of the current line to (B)
 
-`<leader>-c` : Add the priority (C) to the current line
+`<leader>-c` : Set the priority of the current line to (C)
 
 `<leader>-d` : Insert the current date
 
