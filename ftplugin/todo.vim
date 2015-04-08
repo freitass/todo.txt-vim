@@ -52,8 +52,10 @@ endfunction
 
 function! TodoTxtRemoveCompleted()
     " Check if we can write to done.txt before proceeding.
+
     let l:target_dir = expand('%:p:h')
-    let l:done_file = l:target_dir.'/done.txt'
+    let l:todo_file = expand('%:p')
+    let l:done_file = substitute(substitute(l:todo_file, 'todo.txt$', 'done.txt', ''), 'Todo.txt$', 'Done.txt', '')
     if !filewritable(l:done_file) && !filewritable(l:target_dir)
         echoerr "Can't write to file 'done.txt'"
         return
