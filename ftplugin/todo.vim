@@ -9,6 +9,11 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+" Export Context Dictionary for unit testing {{{1
+function! todo#__context__()
+    return { 'sid': s:SID, 'scope': s: }
+endfunction
+
 " General options {{{1
 " Some options lose their values when window changes. They will be set every
 " time this script is invocated, which is whenever a file of this type is

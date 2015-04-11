@@ -1,0 +1,3 @@
+(B) Linear regression Rnet=Qh+Qle. +cons_emp_model
+(B) Review key questions. +benchmarking
+(A) simple model first +cons_emp_model
