@@ -73,11 +73,11 @@ if !hasmapto("<leader>s",'n')
 endif
 
 if !hasmapto("<leader>s@",'n')
-    nnoremap <script> <silent> <buffer> <leader>s@ :sort /.\{-}\(^\|\W\)\ze@/ <CR>
+    nnoremap <script> <silent> <buffer> <leader>s@ :sort /\(^\\| \)\zs@[^[:blank:]]\+/ r<CR>
 endif
 
 if !hasmapto("<leader>s+",'n')
-    nnoremap <script> <silent> <buffer> <leader>s+ :sort /.\{-}\(^\|\W\)\ze+/ <CR>
+    nnoremap <script> <silent> <buffer> <leader>s+ :sort /\(^\\| \)\zs+[^[:blank:]]\+/ r<CR>
 endif
 
 " Increment and Decrement The Priority
