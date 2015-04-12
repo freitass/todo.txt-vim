@@ -10,6 +10,12 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 " Export Context Dictionary for unit testing {{{1
+function! s:get_SID()
+    return matchstr(expand('<sfile>'), '<SNR>\d\+_')
+endfunction
+let s:SID = s:get_SID()
+delfunction s:get_SID
+
 function! todo#__context__()
     return { 'sid': s:SID, 'scope': s: }
 endfunction
@@ -26,8 +32,12 @@ function! s:TodoTxtRemovePriority()
     :s/^(\w)\s\+//ge
 endfunction
 
+function! s:TodoTxtGetCurrentDate()
+    return strftime('%Y-%m-%d')
+endfunction
+
 function! TodoTxtPrependDate()
-    normal! 0"=strftime("%Y-%m-%d ")P
+    execute 'normal! 0"='.string(s:TodoTxtGetCurrentDate().' ').'P'
 endfunction
 
 function! TodoTxtMarkAsDone()
