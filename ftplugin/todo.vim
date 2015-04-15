@@ -98,21 +98,40 @@ endif
 " Increment and Decrement The Priority
 :set nf=octal,hex,alpha
 
+function! TodoTxtGetPriority()
+    if match(getline('.'), '^(\w)') == 0
+        let l:priority = strpart(getline('.'), 1, 1)
+    elseif match(getline('.'), '^x') == 0
+        let l:priority = 'x'
+    endif
+
+    return l:priority
+endfunction
+
 function! TodoTxtPrioritizeIncrease()
-    normal! 0f)h
+    if TodoTxtGetPriority() != ''
+        normal! 0f)h
+    endif
 endfunction
 
 function! TodoTxtPrioritizeDecrease()
-    normal! 0f)h
+    if TodoTxtGetPriority() != ''
+        normal! 0f)h
+    endif
 endfunction
 
 function! TodoTxtPrioritizeAdd (priority)
-    " Need to figure out how to only do this if the first visible letter in a line is not (
     :call TodoTxtPrioritizeAddAction(a:priority)
 endfunction
 
 function! TodoTxtPrioritizeAddAction (priority)
-    execute "normal! mq0i(".a:priority.") \<esc>`q"
+    if TodoTxtGetPriority() == ''
+        execute "normal! mq0i(".a:priority.") \<esc>`q"
+    elseif TodoTxtGetPriority() == 'x'
+        execute "normal! mq0s(".a:priority.")\<esc>`q"
+    else
+        execute "normal! mq03s(".a:priority.")\<esc>`q"
+    endif
 endfunction
 
 if !hasmapto("<leader>j",'n')
