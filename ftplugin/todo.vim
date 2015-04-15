@@ -81,10 +81,18 @@ function! TodoTxtRemoveCompleted()
     call s:AppendToFile(l:done_file, l:completed)
 endfunction
 
+function! TodoTxtSort()
+    " vim :sort is usually stable
+    " we sort first on contexts, then on projects and then on priority
+    :sort /@[a-zA-Z]*/ r
+    :sort /+[a-zA-Z]*/ r
+    :sort /\v\([A-Z]\)/ r
+endfunction
+
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<leader>s",'n')
-    nnoremap <script> <silent> <buffer> <leader>s :sort<CR>
+    nnoremap <script> <silent> <buffer> <leader>s :call TodoTxtSort()<CR>
 endif
 
 if !hasmapto("<leader>s@",'n')
