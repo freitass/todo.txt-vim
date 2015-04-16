@@ -81,18 +81,38 @@ function! TodoTxtRemoveCompleted()
     call s:AppendToFile(l:done_file, l:completed)
 endfunction
 
+function! TodoTxtSortByContext() range
+    execute a:firstline . "," . a:lastline . "sort /\\(^\\| \\)\\zs@[^[:blank:]]\\+/ r"
+endfunction
+
+function! TodoTxtSortByProject() range
+    execute a:firstline . "," . a:lastline . "sort /\\(^\\| \\)\\zs+[^[:blank:]]\\+/ r"
+endfunction
+
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<leader>s",'n')
-    nnoremap <script> <silent> <buffer> <leader>s :sort<CR>
+    nnoremap <script> <silent> <buffer> <leader>s :%sort<CR>
+endif
+
+if !hasmapto("<leader>s",'v')
+    vnoremap <script> <silent> <buffer> <leader>s :sort<CR>
 endif
 
 if !hasmapto("<leader>s@",'n')
-    nnoremap <script> <silent> <buffer> <leader>s@ :sort /\(^\\| \)\zs@[^[:blank:]]\+/ r<CR>
+    nnoremap <script> <silent> <buffer> <leader>s@ :%call TodoTxtSortByContext()<CR>
+endif
+
+if !hasmapto("<leader>s@",'v')
+    vnoremap <script> <silent> <buffer> <leader>s@ :call TodoTxtSortByContext()<CR>
 endif
 
 if !hasmapto("<leader>s+",'n')
-    nnoremap <script> <silent> <buffer> <leader>s+ :sort /\(^\\| \)\zs+[^[:blank:]]\+/ r<CR>
+    nnoremap <script> <silent> <buffer> <leader>s+ :%call TodoTxtSortByProject()<CR>
+endif
+
+if !hasmapto("<leader>s+",'v')
+    vnoremap <script> <silent> <buffer> <leader>s+ :call TodoTxtSortByProject()<CR>
 endif
 
 " Increment and Decrement The Priority
