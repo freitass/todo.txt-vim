@@ -89,6 +89,10 @@ function! TodoTxtSortByProject() range
     execute a:firstline . "," . a:lastline . "sort /\\(^\\| \\)\\zs+[^[:blank:]]\\+/ r"
 endfunction
 
+function! TodoTxtSortByDate() range
+    execute a:firstline . "," . a:lastline . "sort! /\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}/ r"
+endfunction
+
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<leader>s",'n')
@@ -113,6 +117,14 @@ endif
 
 if !hasmapto("<leader>s+",'v')
     vnoremap <script> <silent> <buffer> <leader>s+ :call TodoTxtSortByProject()<CR>
+endif
+
+if !hasmapto("<leader>sd",'n')
+    nnoremap <script> <silent> <buffer> <leader>sd :%call TodoTxtSortByDate()<CR>
+endif
+
+if !hasmapto("<leader>sd",'v')
+    vnoremap <script> <silent> <buffer> <leader>sd :call TodoTxtSortByDate()<CR>
 endif
 
 " Increment and Decrement The Priority
