@@ -79,7 +79,7 @@ function! todo#txt#sort_by_project() range
 endfunction
 
 function! todo#txt#sort_by_date() range
-    execute a:firstline . "," . a:lastline . "sort! /\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}/ r"
+    execute a:firstline . "," . a:lastline . "sort /\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}/ r"
 endfunction
 
 " Increment and Decrement The Priority

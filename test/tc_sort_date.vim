@@ -5,9 +5,9 @@ let s:tc = unittest#testcase#new('Sort Date',
 let s:LEADER = mapleader
 
 let s:SORTED_TASKS = [
-      \ '(B) 2013-03-16 2013-03-10',
+      \ '(B) 2012-04-16 2015-04-16',
       \ '(B) 2013-03-15 2015-03-17',
-      \ '(A) 2012-04-16 2015-04-16',
+      \ '(A) 2013-03-16 2013-03-10',
       \ ]
 
 function! s:tc.test_sort_by_context()
