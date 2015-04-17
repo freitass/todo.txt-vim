@@ -3,3 +3,10 @@
 (B) 2012-04-16 2015-04-16
 (A) 2013-03-16 2013-03-10
 # end_lorem_ipsum
+# task_with_no_date
+2013-03-15 task with date
+task with no date
+2013-03-15 task with date
+2013-03-15 task with date
+task with no date
+# end_task_with_no_date

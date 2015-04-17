@@ -10,9 +10,22 @@ let s:SORTED_TASKS = [
       \ '(A) 2013-03-16 2013-03-10',
       \ ]
 
-function! s:tc.test_sort_by_context()
+let s:SORTED_TASKS_WITH_NO_DATE = [
+      \ '2013-03-15 task with date',
+      \ '2013-03-15 task with date',
+      \ '2013-03-15 task with date',
+      \ 'task with no date',
+      \ 'task with no date',
+      \ ]
+
+function! s:tc.test_sort_by_date()
   call self.data.visual_execute('call todo#txt#sort_by_date()', 'lorem_ipsum')
   call self.assert_equal(s:SORTED_TASKS, self.data.get('lorem_ipsum'))
+endfunction
+
+function! s:tc.test_sort_by_date_with_tasks_without_date()
+  call self.data.visual_execute('call todo#txt#sort_by_date()', 'task_with_no_date')
+  call self.assert_equal(s:SORTED_TASKS_WITH_NO_DATE, self.data.get('task_with_no_date'))
 endfunction
 
 unlet s:tc

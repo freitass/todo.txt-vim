@@ -79,7 +79,9 @@ function! todo#txt#sort_by_project() range
 endfunction
 
 function! todo#txt#sort_by_date() range
-    execute a:firstline . "," . a:lastline . "sort /\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}/ r"
+    let l:date_regex = "\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}"
+    execute a:firstline . "," . a:lastline . "sort /" . l:date_regex . "/ r"
+    execute a:firstline . "," . a:lastline . "g!/" . l:date_regex . "/m" . a:lastline
 endfunction
 
 " Increment and Decrement The Priority
