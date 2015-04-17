@@ -11,7 +11,7 @@ let s:SORTED_TASKS = [
       \ ]
 
 function! s:tc.test_sort_by_project()
-  call self.data.visual_execute('call TodoTxtSortByProject()', 'lorem_ipsum')
+  call self.data.visual_execute('call todo#txt#sort_by_project()', 'lorem_ipsum')
   call self.assert_equal(s:SORTED_TASKS, self.data.get('lorem_ipsum'))
 endfunction
 

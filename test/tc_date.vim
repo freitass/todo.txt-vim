@@ -1,5 +1,5 @@
 let s:here = expand('<sfile>:p:h')
-let s:context = todo#__context__()
+let s:context = todo#txt#__context__()
 let s:context['data'] = s:here . '/tc_date.todo.txt'
 let s:tc = unittest#testcase#new('Date', s:context)
 
@@ -7,7 +7,7 @@ let s:LEADER = mapleader
 let s:TODAY = strftime("%Y-%m-%d")
 
 function! s:tc.test_current_date()
-  call self.assert_equal(s:TODAY, self.call('s:TodoTxtGetCurrentDate', []))
+  call self.assert_equal(s:TODAY, self.call('s:get_current_date', []))
 endfunction
 
 let s:DATE_INSERTED = [
@@ -31,7 +31,7 @@ function! s:tc.test_insert_date_insert_mode()
 endfunction
 
 function! s:tc.test_insert_date_visual_mode()
-  call self.data.visual_execute('call TodoTxtPrependDate()', 'lorem_ipsum')
+  call self.data.visual_execute('call todo#txt#prepend_date()', 'lorem_ipsum')
   call self.assert_equal(s:DATE_INSERTED_VISUAL, self.data.get('lorem_ipsum'))
 endfunction
 

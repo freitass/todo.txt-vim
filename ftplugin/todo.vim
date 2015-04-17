@@ -9,89 +9,12 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-" Export Context Dictionary for unit testing {{{1
-function! s:get_SID()
-    return matchstr(expand('<sfile>'), '<SNR>\d\+_')
-endfunction
-let s:SID = s:get_SID()
-delfunction s:get_SID
-
-function! todo#__context__()
-    return { 'sid': s:SID, 'scope': s: }
-endfunction
-
 " General options {{{1
 " Some options lose their values when window changes. They will be set every
 " time this script is invocated, which is whenever a file of this type is
 " created or edited.
 setlocal textwidth=0
 setlocal wrapmargin=0
-
-" Functions {{{1
-function! s:TodoTxtRemovePriority()
-    :s/^(\w)\s\+//ge
-endfunction
-
-function! s:TodoTxtGetCurrentDate()
-    return strftime('%Y-%m-%d')
-endfunction
-
-function! TodoTxtPrependDate()
-    execute 'normal! 0"='.string(s:TodoTxtGetCurrentDate().' ').'P'
-endfunction
-
-function! TodoTxtMarkAsDone()
-    call s:TodoTxtRemovePriority()
-    call TodoTxtPrependDate()
-    normal! Ix 
-endfunction
-
-function! TodoTxtMarkAllAsDone()
-    :g!/^x /:call TodoTxtMarkAsDone()
-endfunction
-
-function! s:AppendToFile(file, lines)
-    let l:lines = []
-
-    " Place existing tasks in done.txt at the beggining of the list.
-    if filereadable(a:file)
-        call extend(l:lines, readfile(a:file))
-    endif
-
-    " Append new completed tasks to the list.
-    call extend(l:lines, a:lines)
-
-    " Write to file.
-    call writefile(l:lines, a:file)
-endfunction
-
-function! TodoTxtRemoveCompleted()
-    " Check if we can write to done.txt before proceeding.
-
-    let l:target_dir = expand('%:p:h')
-    let l:todo_file = expand('%:p')
-    let l:done_file = substitute(substitute(l:todo_file, 'todo.txt$', 'done.txt', ''), 'Todo.txt$', 'Done.txt', '')
-    if !filewritable(l:done_file) && !filewritable(l:target_dir)
-        echoerr "Can't write to file 'done.txt'"
-        return
-    endif
-
-    let l:completed = []
-    :g/^x /call add(l:completed, getline(line(".")))|d
-    call s:AppendToFile(l:done_file, l:completed)
-endfunction
-
-function! TodoTxtSortByContext() range
-    execute a:firstline . "," . a:lastline . "sort /\\(^\\| \\)\\zs@[^[:blank:]]\\+/ r"
-endfunction
-
-function! TodoTxtSortByProject() range
-    execute a:firstline . "," . a:lastline . "sort /\\(^\\| \\)\\zs+[^[:blank:]]\\+/ r"
-endfunction
-
-function! TodoTxtSortByDate() range
-    execute a:firstline . "," . a:lastline . "sort! /\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}/ r"
-endfunction
 
 " Mappings {{{1
 " Sort tasks {{{2
@@ -104,87 +27,68 @@ if !hasmapto("<leader>s",'v')
 endif
 
 if !hasmapto("<leader>s@",'n')
-    nnoremap <script> <silent> <buffer> <leader>s@ :%call TodoTxtSortByContext()<CR>
+    nnoremap <script> <silent> <buffer> <leader>s@ :%call todo#txt#sort_by_context()<CR>
 endif
 
 if !hasmapto("<leader>s@",'v')
-    vnoremap <script> <silent> <buffer> <leader>s@ :call TodoTxtSortByContext()<CR>
+    vnoremap <script> <silent> <buffer> <leader>s@ :call todo#txt#sort_by_context()<CR>
 endif
 
 if !hasmapto("<leader>s+",'n')
-    nnoremap <script> <silent> <buffer> <leader>s+ :%call TodoTxtSortByProject()<CR>
+    nnoremap <script> <silent> <buffer> <leader>s+ :%call todo#txt#sort_by_project()<CR>
 endif
 
 if !hasmapto("<leader>s+",'v')
-    vnoremap <script> <silent> <buffer> <leader>s+ :call TodoTxtSortByProject()<CR>
+    vnoremap <script> <silent> <buffer> <leader>s+ :call todo#txt#sort_by_project()<CR>
 endif
 
 if !hasmapto("<leader>sd",'n')
-    nnoremap <script> <silent> <buffer> <leader>sd :%call TodoTxtSortByDate()<CR>
+    nnoremap <script> <silent> <buffer> <leader>sd :%call todo#txt#sort_by_date()<CR>
 endif
 
 if !hasmapto("<leader>sd",'v')
-    vnoremap <script> <silent> <buffer> <leader>sd :call TodoTxtSortByDate()<CR>
+    vnoremap <script> <silent> <buffer> <leader>sd :call todo#txt#sort_by_date()<CR>
 endif
 
-" Increment and Decrement The Priority
-:set nf=octal,hex,alpha
-
-function! TodoTxtPrioritizeIncrease()
-    normal! 0f)h
-endfunction
-
-function! TodoTxtPrioritizeDecrease()
-    normal! 0f)h
-endfunction
-
-function! TodoTxtPrioritizeAdd (priority)
-    " Need to figure out how to only do this if the first visible letter in a line is not (
-    :call TodoTxtPrioritizeAddAction(a:priority)
-endfunction
-
-function! TodoTxtPrioritizeAddAction (priority)
-    execute "normal! mq0i(".a:priority.") \<esc>`q"
-endfunction
-
+" Change priority {{{2
 if !hasmapto("<leader>j",'n')
-    nnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+    nnoremap <script> <silent> <buffer> <leader>j :call todo#txt#prioritize_increase()<CR>
 endif
 
 if !hasmapto("<leader>j",'v')
-    vnoremap <script> <silent> <buffer> <leader>j :call TodoTxtPrioritizeIncrease()<CR>
+    vnoremap <script> <silent> <buffer> <leader>j :call todo#txt#prioritize_increase()<CR>
 endif
 
 if !hasmapto("<leader>k",'n')
-    nnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+    nnoremap <script> <silent> <buffer> <leader>k :call todo#txt#prioritize_decrease()<CR>
 endif
 
 if !hasmapto("<leader>k",'v')
-    vnoremap <script> <silent> <buffer> <leader>k :call TodoTxtPrioritizeDecrease()<CR>
+    vnoremap <script> <silent> <buffer> <leader>k :call todo#txt#prioritize_decrease()<CR>
 endif
 
 if !hasmapto("<leader>a",'n')
-    nnoremap <script> <silent> <buffer> <leader>a :call TodoTxtPrioritizeAdd('A')<CR>
+    nnoremap <script> <silent> <buffer> <leader>a :call todo#txt#prioritize_add('A')<CR>
 endif
 
 if !hasmapto("<leader>a",'v')
-    vnoremap <script> <silent> <buffer> <leader>a :call TodoTxtPrioritizeAdd('A')<CR>
+    vnoremap <script> <silent> <buffer> <leader>a :call todo#txt#prioritize_add('A')<CR>
 endif
 
 if !hasmapto("<leader>b",'n')
-    nnoremap <script> <silent> <buffer> <leader>b :call TodoTxtPrioritizeAdd('B')<CR>
+    nnoremap <script> <silent> <buffer> <leader>b :call todo#txt#prioritize_add('B')<CR>
 endif
 
 if !hasmapto("<leader>b",'v')
-    vnoremap <script> <silent> <buffer> <leader>b :call TodoTxtPrioritizeAdd('B')<CR>
+    vnoremap <script> <silent> <buffer> <leader>b :call todo#txt#prioritize_add('B')<CR>
 endif
 
 if !hasmapto("<leader>c",'n')
-    nnoremap <script> <silent> <buffer> <leader>c :call TodoTxtPrioritizeAdd('C')<CR>
+    nnoremap <script> <silent> <buffer> <leader>c :call todo#txt#prioritize_add('C')<CR>
 endif
 
 if !hasmapto("<leader>c",'v')
-    vnoremap <script> <silent> <buffer> <leader>c :call TodoTxtPrioritizeAdd('C')<CR>
+    vnoremap <script> <silent> <buffer> <leader>c :call todo#txt#prioritize_add('C')<CR>
 endif
 
 " Insert date {{{2
@@ -193,40 +97,40 @@ if !hasmapto("date<Tab>",'i')
 endif
 
 if !hasmapto("<leader>d",'n')
-    nnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
+    nnoremap <script> <silent> <buffer> <leader>d :call todo#txt#prepend_date()<CR>
 endif
 
 if !hasmapto("<leader>d",'v')
-    vnoremap <script> <silent> <buffer> <leader>d :call TodoTxtPrependDate()<CR>
+    vnoremap <script> <silent> <buffer> <leader>d :call todo#txt#prepend_date()<CR>
 endif
 
 " Mark done {{{2
 if !hasmapto("<leader>x",'n')
-    nnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
+    nnoremap <script> <silent> <buffer> <leader>x :call todo#txt#mark_as_done()<CR>
 endif
 
 if !hasmapto("<leader>x",'v')
-    vnoremap <script> <silent> <buffer> <leader>x :call TodoTxtMarkAsDone()<CR>
+    vnoremap <script> <silent> <buffer> <leader>x :call todo#txt#mark_as_done()<CR>
 endif
 
 " Mark all done {{{2
 if !hasmapto("<leader>X",'n')
-    nnoremap <script> <silent> <buffer> <leader>X :call TodoTxtMarkAllAsDone()<CR>
+    nnoremap <script> <silent> <buffer> <leader>X :call todo#txt#mark_all_as_done()<CR>
 endif
 
 " Remove completed {{{2
 if !hasmapto("<leader>D",'n')
-    nnoremap <script> <silent> <buffer> <leader>D :call TodoTxtRemoveCompleted()<CR>
+    nnoremap <script> <silent> <buffer> <leader>D :call todo#txt#remove_completed()<CR>
 endif
 
 " Folding {{{1
 " Options {{{2
 setlocal foldmethod=expr
-setlocal foldexpr=TodoFoldLevel(v:lnum)
-setlocal foldtext=TodoFoldText()
+setlocal foldexpr=s:todo_fold_level(v:lnum)
+setlocal foldtext=s:todo_fold_text()
 
-" TodoFoldLevel(lnum) {{{2
-function! TodoFoldLevel(lnum)
+" s:todo_fold_level(lnum) {{{2
+function! s:todo_fold_level(lnum)
     " The match function returns the index of the matching pattern or -1 if
     " the pattern doesn't match. In this case, we always try to match a
     " completed task from the beginning of the line so that the matching
@@ -238,8 +142,8 @@ function! TodoFoldLevel(lnum)
     return match(getline(a:lnum),'^[xX]\s.\+$') + 1
 endfunction
 
-" TodoFoldText() {{{2
-function! TodoFoldText()
+" s:todo_fold_text() {{{2
+function! s:todo_fold_text()
     " The text displayed at the fold is formatted as '+- N Completed tasks'
     " where N is the number of lines folded.
     return '+' . v:folddashes . ' '
