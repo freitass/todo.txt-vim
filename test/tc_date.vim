@@ -3,7 +3,6 @@ let s:context = todo#txt#__context__()
 let s:context['data'] = s:here . '/tc_date.todo.txt'
 let s:tc = unittest#testcase#new('Date', s:context)
 
-let s:LEADER = mapleader
 let s:TODAY = strftime("%Y-%m-%d")
 
 function! s:tc.test_current_date()
@@ -20,7 +19,7 @@ let s:DATE_INSERTED_VISUAL = [
 
 function! s:tc.test_insert_date_normal_mode()
   call self.data.goto('lorem_ipsum')
-  execute 'normal ' . s:LEADER . 'd'
+  call self.data.execute('call todo#txt#prepend_date()', 'lorem_ipsum')
   call self.assert_equal(s:DATE_INSERTED, self.data.get('lorem_ipsum'))
 endfunction
 
