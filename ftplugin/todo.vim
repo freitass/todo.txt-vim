@@ -18,77 +18,77 @@ setlocal wrapmargin=0
 
 " Mappings {{{1
 " Sort tasks {{{2
-if !hasmapto("<leader>s",'n')
-    nnoremap <script> <silent> <buffer> <leader>s :%sort<CR>
+if !hasmapto("<localleader>s",'n')
+    nnoremap <script> <silent> <buffer> <localleader>s :%sort<CR>
 endif
 
-if !hasmapto("<leader>s",'v')
-    vnoremap <script> <silent> <buffer> <leader>s :sort<CR>
+if !hasmapto("<localleader>s",'v')
+    vnoremap <script> <silent> <buffer> <localleader>s :sort<CR>
 endif
 
-if !hasmapto("<leader>s@",'n')
-    nnoremap <script> <silent> <buffer> <leader>s@ :%call todo#txt#sort_by_context()<CR>
+if !hasmapto("<localleader>s@",'n')
+    nnoremap <script> <silent> <buffer> <localleader>s@ :%call todo#txt#sort_by_context()<CR>
 endif
 
-if !hasmapto("<leader>s@",'v')
-    vnoremap <script> <silent> <buffer> <leader>s@ :call todo#txt#sort_by_context()<CR>
+if !hasmapto("<localleader>s@",'v')
+    vnoremap <script> <silent> <buffer> <localleader>s@ :call todo#txt#sort_by_context()<CR>
 endif
 
-if !hasmapto("<leader>s+",'n')
-    nnoremap <script> <silent> <buffer> <leader>s+ :%call todo#txt#sort_by_project()<CR>
+if !hasmapto("<localleader>s+",'n')
+    nnoremap <script> <silent> <buffer> <localleader>s+ :%call todo#txt#sort_by_project()<CR>
 endif
 
-if !hasmapto("<leader>s+",'v')
-    vnoremap <script> <silent> <buffer> <leader>s+ :call todo#txt#sort_by_project()<CR>
+if !hasmapto("<localleader>s+",'v')
+    vnoremap <script> <silent> <buffer> <localleader>s+ :call todo#txt#sort_by_project()<CR>
 endif
 
-if !hasmapto("<leader>sd",'n')
-    nnoremap <script> <silent> <buffer> <leader>sd :%call todo#txt#sort_by_date()<CR>
+if !hasmapto("<localleader>sd",'n')
+    nnoremap <script> <silent> <buffer> <localleader>sd :%call todo#txt#sort_by_date()<CR>
 endif
 
-if !hasmapto("<leader>sd",'v')
-    vnoremap <script> <silent> <buffer> <leader>sd :call todo#txt#sort_by_date()<CR>
+if !hasmapto("<localleader>sd",'v')
+    vnoremap <script> <silent> <buffer> <localleader>sd :call todo#txt#sort_by_date()<CR>
 endif
 
 " Change priority {{{2
-if !hasmapto("<leader>j",'n')
-    nnoremap <script> <silent> <buffer> <leader>j :call todo#txt#prioritize_increase()<CR>
+if !hasmapto("<localleader>j",'n')
+    nnoremap <script> <silent> <buffer> <localleader>j :call todo#txt#prioritize_increase()<CR>
 endif
 
-if !hasmapto("<leader>j",'v')
-    vnoremap <script> <silent> <buffer> <leader>j :call todo#txt#prioritize_increase()<CR>
+if !hasmapto("<localleader>j",'v')
+    vnoremap <script> <silent> <buffer> <localleader>j :call todo#txt#prioritize_increase()<CR>
 endif
 
-if !hasmapto("<leader>k",'n')
-    nnoremap <script> <silent> <buffer> <leader>k :call todo#txt#prioritize_decrease()<CR>
+if !hasmapto("<localleader>k",'n')
+    nnoremap <script> <silent> <buffer> <localleader>k :call todo#txt#prioritize_decrease()<CR>
 endif
 
-if !hasmapto("<leader>k",'v')
-    vnoremap <script> <silent> <buffer> <leader>k :call todo#txt#prioritize_decrease()<CR>
+if !hasmapto("<localleader>k",'v')
+    vnoremap <script> <silent> <buffer> <localleader>k :call todo#txt#prioritize_decrease()<CR>
 endif
 
-if !hasmapto("<leader>a",'n')
-    nnoremap <script> <silent> <buffer> <leader>a :call todo#txt#prioritize_add('A')<CR>
+if !hasmapto("<localleader>a",'n')
+    nnoremap <script> <silent> <buffer> <localleader>a :call todo#txt#prioritize_add('A')<CR>
 endif
 
-if !hasmapto("<leader>a",'v')
-    vnoremap <script> <silent> <buffer> <leader>a :call todo#txt#prioritize_add('A')<CR>
+if !hasmapto("<localleader>a",'v')
+    vnoremap <script> <silent> <buffer> <localleader>a :call todo#txt#prioritize_add('A')<CR>
 endif
 
-if !hasmapto("<leader>b",'n')
-    nnoremap <script> <silent> <buffer> <leader>b :call todo#txt#prioritize_add('B')<CR>
+if !hasmapto("<localleader>b",'n')
+    nnoremap <script> <silent> <buffer> <localleader>b :call todo#txt#prioritize_add('B')<CR>
 endif
 
-if !hasmapto("<leader>b",'v')
-    vnoremap <script> <silent> <buffer> <leader>b :call todo#txt#prioritize_add('B')<CR>
+if !hasmapto("<localleader>b",'v')
+    vnoremap <script> <silent> <buffer> <localleader>b :call todo#txt#prioritize_add('B')<CR>
 endif
 
-if !hasmapto("<leader>c",'n')
-    nnoremap <script> <silent> <buffer> <leader>c :call todo#txt#prioritize_add('C')<CR>
+if !hasmapto("<localleader>c",'n')
+    nnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>
 endif
 
-if !hasmapto("<leader>c",'v')
-    vnoremap <script> <silent> <buffer> <leader>c :call todo#txt#prioritize_add('C')<CR>
+if !hasmapto("<localleader>c",'v')
+    vnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>
 endif
 
 " Insert date {{{2
@@ -96,31 +96,31 @@ if !hasmapto("date<Tab>",'i')
     inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 endif
 
-if !hasmapto("<leader>d",'n')
-    nnoremap <script> <silent> <buffer> <leader>d :call todo#txt#prepend_date()<CR>
+if !hasmapto("<localleader>d",'n')
+    nnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#prepend_date()<CR>
 endif
 
-if !hasmapto("<leader>d",'v')
-    vnoremap <script> <silent> <buffer> <leader>d :call todo#txt#prepend_date()<CR>
+if !hasmapto("<localleader>d",'v')
+    vnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#prepend_date()<CR>
 endif
 
 " Mark done {{{2
-if !hasmapto("<leader>x",'n')
-    nnoremap <script> <silent> <buffer> <leader>x :call todo#txt#mark_as_done()<CR>
+if !hasmapto("<localleader>x",'n')
+    nnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#mark_as_done()<CR>
 endif
 
-if !hasmapto("<leader>x",'v')
-    vnoremap <script> <silent> <buffer> <leader>x :call todo#txt#mark_as_done()<CR>
+if !hasmapto("<localleader>x",'v')
+    vnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#mark_as_done()<CR>
 endif
 
 " Mark all done {{{2
-if !hasmapto("<leader>X",'n')
-    nnoremap <script> <silent> <buffer> <leader>X :call todo#txt#mark_all_as_done()<CR>
+if !hasmapto("<localleader>X",'n')
+    nnoremap <script> <silent> <buffer> <localleader>X :call todo#txt#mark_all_as_done()<CR>
 endif
 
 " Remove completed {{{2
-if !hasmapto("<leader>D",'n')
-    nnoremap <script> <silent> <buffer> <leader>D :call todo#txt#remove_completed()<CR>
+if !hasmapto("<localleader>D",'n')
+    nnoremap <script> <silent> <buffer> <localleader>D :call todo#txt#remove_completed()<CR>
 endif
 
 " Folding {{{1

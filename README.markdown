@@ -7,33 +7,33 @@
 
 This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few mappings, to help with editing these files:
 
-`<leader>-s` : Sort the file
+`<localleader>-s` : Sort the file
 
-`<leader>-s+` : Sort the file on +Projects
+`<localleader>-s+` : Sort the file on +Projects
 
-`<leader>-s@` : Sort the file on @Contexts
+`<localleader>-s@` : Sort the file on @Contexts
 
-`<leader>-sd` : Sort the file on dates
+`<localleader>-sd` : Sort the file on dates
 
-`<leader>-j` : Lower the priority of the current line
+`<localleader>-j` : Lower the priority of the current line
 
-`<leader>-k` : Increase the priority of the current line
+`<localleader>-k` : Increase the priority of the current line
 
-`<leader>-a` : Add the priority (A) to the current line
+`<localleader>-a` : Add the priority (A) to the current line
 
-`<leader>-b` : Add the priority (B) to the current line
+`<localleader>-b` : Add the priority (B) to the current line
 
-`<leader>-c` : Add the priority (C) to the current line
+`<localleader>-c` : Add the priority (C) to the current line
 
-`<leader>-d` : Insert the current date
+`<localleader>-d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<leader>-x` : Mark task as done (inserts current date as completion date)
+`<localleader>-x` : Mark task as done (inserts current date as completion date)
 
-`<leader>-X` : Mark all tasks as completed
+`<localleader>-X` : Mark all tasks as completed
 
-`<leader>-D` : Move completed tasks to done.txt
+`<localleader>-D` : Move completed tasks to done.txt
 
 If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
 Then you will be able to get the commands help with: :h todo.txt
