@@ -1,4 +1,4 @@
-### Important note: mappings were changed!
+### (Apr 2015) Important note: mappings were changed!
 
 As it was suggested on issue [#28](https://github.com/freitass/todo.txt-vim/issues/28) (and as recommended by vim's documentation), all mappings were changed to use `<localleader>` instead of `<leader>`. If you don't have `maplocalleader` set on your environment then yours is probably `\`. For more information on that regard, please take a look at `:h <Localleader>`.
 
