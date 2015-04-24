@@ -72,19 +72,16 @@ Also `<LocalLeader>-x` is a toggle which allow you to unmark a task as done.
 We also provide a nice complete function for project and context, to use it
 add the following lines to your vimrc:
 
-" Use TodoComplete as the user complete
-
+    " Use TodoComplete as the user complete
     au filetype todo setlocal completefunc=TodoComplete
 
 You can also start automatically the completion when entering '+' or '@' by
 adding the next lines to your vimrc:
 
-" Auto complete projects
-
+    " Auto complete projects
     au filetype todo imap + +<C-X><C-U>
 
-" Auto complete contexts
-
+    " Auto complete contexts
     au filetype todo imap @ @<C-X><C-U>
 
 The TodoComplete function is designed to complete projects (starting by '+')
