@@ -73,15 +73,19 @@ We also provide a nice complete function for project and context, to use it
 add the following lines to your vimrc:
 
 " Use TodoComplete as the user complete
-au filetype todo setlocal completefunc=TodoComplete
+
+    au filetype todo setlocal completefunc=TodoComplete
 
 You can also start automatically the completion when entering '+' or '@' by
 adding the next lines to your vimrc:
 
 " Auto complete projects
-au filetype todo imap + +<C-X><C-U>
+
+    au filetype todo imap + +<C-X><C-U>
+
 " Auto complete contexts
-au filetype todo imap @ @<C-X><C-U>
+
+    au filetype todo imap @ @<C-X><C-U>
 
 The TodoComplete function is designed to complete projects (starting by '+')
 and context (starting by '@'). If you use it on a regular word, it will do a
