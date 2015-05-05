@@ -26,7 +26,7 @@ function! s:get_current_date()
 endfunction
 
 function! todo#txt#prepend_date()
-    execute 'normal! 0"='.string(s:get_current_date().' ').'P'
+    execute 's/^\(([a-zA-Z]) \)\?/\1' . s:get_current_date() . ' /'
 endfunction
 
 function! todo#txt#mark_as_done()
