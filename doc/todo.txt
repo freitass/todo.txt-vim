@@ -1,46 +1,51 @@
-*todo.txt*
+*todo.txt*	Vim plugin for Todo.txt files
+                     _____         _       _        _   ~
+                    |_   _|__   __| | ___ | |___  _| |_ ~
+                      | |/ _ \ / _` |/ _ \| __\ \/ / __|~
+                      | | (_) | (_| | (_) | |_ >  <| |_ ~
+                      |_|\___/ \__,_|\___(_)__/_/\_\\__|~
+
+                              Reference Manual~
 
 ==============================================================================
 CONTENTS                                                       *todo-contents*
 
-  1. Commands ........................... |todo-commands|
-  2. Options ............................ |todo-options|
+	1. Commands ..................................... |todo-commands|
+		1.1. Sorting tasks ............................ |todo-commands-sorting|
+		1.2. Edit priority ............................ |todo-commands-priority|
+		1.3. Date ..................................... |todo-commands-date|
+		1.4. Mark as done ............................. |todo-commands-done|
+	2. Options ...................................... |todo-options|
 
 ==============================================================================
-COMMANDS                                                       *todo-commands*
+1. Commands                                                    *todo-commands*
 
-`<localleader>-s` : Sort the file
-
-`<localleader>-s+` : Sort the file on +Projects
-
-`<localleader>-s@` : Sort the file on @Contexts
-
-`<localleader>-sd` : Sort the file on dates
-
-`<localleader>-j` : Lower the priority of the current line
-
-`<localleader>-k` : Increase the priority of the current line
-
-`<localleader>-a` : Add the priority (A) to the current line
-
-`<localleader>-b` : Add the priority (B) to the current line
-
-`<localleader>-c` : Add the priority (C) to the current line
-
-`<localleader>-d` : Insert the current date
-
-`date<tab>`  : (Insert mode) Insert the current date
-
-`<localleader>-x` : Mark task as done (inserts current date as completion date)
-
-`<localleader>-X` : Mark all tasks as completed
-
-`<localleader>-D` : Move completed tasks to done.txt
+1.1 Sorting tasks:                                     *todo-commands-sorting*
+	`<localleader>s`   Sort the file
+	`<localleader>s+`  Sort the file on +Projects
+	`<localleader>s@`  Sort the file on @Contexts
+	`<localleader>sd`  Sort the file on dates
+	
+1.2 Edit priority:                                    *todo-commands-priority*
+	`<localleader>j`   Decrease the priority of the current line
+	`<localleader>k`   Increase the priority of the current line
+	`<localleader>a`   Add the priority (A) to the current line
+	`<localleader>b`   Add the priority (B) to the current line
+	`<localleader>c`   Add the priority (C) to the current line
+	
+1.3 Date:                                                 *todo-commands-date*
+	`<localleader>d`   Set current task's creation date to the current date
+	`date<tab>`        (Insert mode) Insert the current date
+	
+1.4 Mark as done:                                         *todo-commands-done*
+	`<localleader>x`   Mark current task as done
+	`<localleader>X`   Mark all tasks as done
+	`<localleader>D`   Move completed tasks to done.txt
 
 See :h <localleader> for more information about the commands' prefix.
 
 ==============================================================================
-OPTIONS                                                         *todo-options*
+2. Options                                                      *todo-options*
 
                                                       *'g:todo_existing_date'*
 Specify the behavior of date insertion functions when the task already has a
