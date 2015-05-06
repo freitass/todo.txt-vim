@@ -104,7 +104,7 @@ function! todo#txt#prioritize_add(priority)
 endfunction
 
 function! todo#txt#prioritize_add_action(priority)
-    execute "normal! mq0i(".a:priority.") \<esc>`q"
+    execute 's/^\(([a-zA-Z]) \)\?/(' . a:priority . ') /'
 endfunction
 
 " Modeline {{{1
