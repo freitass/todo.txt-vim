@@ -22,3 +22,7 @@ example task
 # existing_date_do_nothing
 2014-05-06 example task
 # end_existing_date_do_nothing
+
+# non_existing_date_do_nothing
+new todo line
+# end_non_existing_date_do_nothing

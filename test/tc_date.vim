@@ -26,6 +26,10 @@ let s:DATE_INSERTED_DO_NOTHING = [
       \ '2014-05-06 example task',
       \ ]
 
+let s:NON_EXISTING_DATE_INSERTED_DO_NOTHING = [
+      \ s:TODAY . ' new todo line',
+      \ ]
+
 function! s:tc.test_insert_date_normal_mode()
   call self.data.goto('lorem_ipsum')
   call todo#txt#prepend_date()
@@ -67,6 +71,13 @@ function! s:tc.test_insert_with_existing_date_and_priority()
   let g:todo_existing_date = 'n'
   call self.data.execute('call todo#txt#prepend_date()', 'existing_date_do_nothing')
   call self.assert_equal(s:DATE_INSERTED_DO_NOTHING, self.data.get('existing_date_do_nothing'))
+  unlet g:todo_existing_date
+endfunction
+
+function! s:tc.test_insert_with_existing_date_and_priority()
+  let g:todo_existing_date = 'n'
+  call self.data.execute('call todo#txt#prepend_date()', 'non_existing_date_do_nothing')
+  call self.assert_equal(s:NON_EXISTING_DATE_INSERTED_DO_NOTHING, self.data.get('non_existing_date_do_nothing'))
   unlet g:todo_existing_date
 endfunction
 
