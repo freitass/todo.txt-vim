@@ -3,40 +3,40 @@
 ==============================================================================
 COMMANDS                                                       *todo-commands*
 
-`<LocalLeader>-s` : Sort the file by priority
+`<LocalLeader>s` : Sort the file by priority
 
-`<LocalLeader>-s+` : Sort the file on +Projects
+`<LocalLeader>s+` : Sort the file on +Projects
 
-`<LocalLeader>-s@` : Sort the file on @Contexts
+`<LocalLeader>s@` : Sort the file on @Contexts
 
-`<LocalLeader>-sc` : Sort the file by context then by priority
+`<LocalLeader>sc` : Sort the file by context then by priority
 
-`<LocalLeader>-scp` : Sort the file by context, project then by priority
+`<LocalLeader>scp` : Sort the file by context, project then by priority
 
-`<LocalLeader>-sp` : Sort the file by project then by priority
+`<LocalLeader>sp` : Sort the file by project then by priority
 
-`<LocalLeader>-spc` : Sort the file by project, context then by priority
+`<LocalLeader>spc` : Sort the file by project, context then by priority
 
-`<LocalLeader>-j` : Lower the priority of the current line
+`<LocalLeader>j` : Lower the priority of the current line
 
-`<LocalLeader>-k` : Increase the priority of the current line
+`<LocalLeader>k` : Increase the priority of the current line
 
-`<LocalLeader>-a` : Add the priority (A) to the current line
+`<LocalLeader>a` : Add the priority (A) to the current line
 
-`<LocalLeader>-b` : Add the priority (B) to the current line
+`<LocalLeader>b` : Add the priority (B) to the current line
 
-`<LocalLeader>-c` : Add the priority (C) to the current line
+`<LocalLeader>c` : Add the priority (C) to the current line
 
-`<LocalLeader>-d` : Insert the current date
+`<LocalLeader>d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<LocalLeader>-x` : Toggle mark task as done (inserts or remove current date as
+`<LocalLeader>x` : Toggle mark task as done (inserts or remove current date as
                     completion date)
 
-`<LocalLeader>-X` : Mark all tasks as completed
+`<LocalLeader>X` : Mark all tasks as completed
 
-`<LocalLeader>-D` : Move completed tasks to done.txt
+`<LocalLeader>D` : Move completed tasks to done.txt
 
 <LocalLeader> is \ by default, so <leader>-s means you type \s
 
@@ -60,16 +60,16 @@ For more information on the available flags see help :sort
 We also provide a nice complete function for project and context, to use it
 add the following lines to your vimrc:
 
-" Use TodoComplete as the user complete
-au filetype todo setlocal completefunc=TodoComplete
+" Use TodoComplete as the omni complete for todo files
+au filetype todo setlocal omnifunc=TodoComplete
 
 You can also start automatically the completion when entering '+' or '@' by
 adding the next lines to your vimrc:
 
 " Auto complete projects
-au filetype todo imap + +<C-X><C-U>
+au filetype todo imap + +<C-X><C-O>
 " Auto complete contexts
-au filetype todo imap @ @<C-X><C-U>
+au filetype todo imap @ @<C-X><C-O>
 
 ===============================================================================
 COMPLETION                                                      *todo-complete*

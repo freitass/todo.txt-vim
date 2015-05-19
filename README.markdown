@@ -22,29 +22,29 @@ function for context and projects (see section 1.4).
 
 This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few mappings, to help with editing these files:
 
-`<LocalLeader>-s` : Sort the file
+`<LocalLeader>s` : Sort the file
 
-`<LocalLeader>-s+` : Sort the file on +Projects
+`<LocalLeader>s+` : Sort the file on +Projects
 
-`<LocalLeader>-s@` : Sort the file on @Contexts
+`<LocalLeader>s@` : Sort the file on @Contexts
 
-`<LocalLeader>-j` : Lower the priority of the current line
+`<LocalLeader>j` : Lower the priority of the current line
 
-`<LocalLeader>-k` : Increase the priority of the current line
+`<LocalLeader>k` : Increase the priority of the current line
 
-`<LocalLeader>-a` : Add the priority (A) to the current line
+`<LocalLeader>a` : Add the priority (A) to the current line
 
-`<LocalLeader>-b` : Add the priority (B) to the current line
+`<LocalLeader>b` : Add the priority (B) to the current line
 
-`<LocalLeader>-c` : Add the priority (C) to the current line
+`<LocalLeader>c` : Add the priority (C) to the current line
 
-`<LocalLeader>-d` : Insert the current date
+`<LocalLeader>d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
 
-`<LocalLeader>-x` : Toggle mark task as done (inserts current date as completion date)
+`<LocalLeader>x` : Toggle mark task as done (inserts current date as completion date)
 
-`<LocalLeader>-X` : Mark all tasks as completed
+`<LocalLeader>X` : Mark all tasks as completed
 
 `<leader>-D` : Move completed tasks to done.txt
 
@@ -56,10 +56,10 @@ Then you will be able to get the commands help with: :h todo.txt
 This fork provides a hierarchical sorting function designed to do by project
 and/or by context sorts and a priority sort.
 
-`<LocalLeader>-sc` : Sort the file by context then by priority
-`<LocalLeader>-scp` : Sort the file by context, project then by priority
-`<LocalLeader>-sp` : Sort the file by project then by priority
-`<LocalLeader>-spc` : Sort the file by project, context then by priority
+`<LocalLeader>sc` : Sort the file by context then by priority
+`<LocalLeader>scp` : Sort the file by context, project then by priority
+`<LocalLeader>sp` : Sort the file by project then by priority
+`<LocalLeader>spc` : Sort the file by project, context then by priority
 
 The user can give argument for the two call to vim sort function by changing
 the following variables in its vimrc:
@@ -67,22 +67,22 @@ see :help sort
     let g:Todo_txt_first_level_sort_mode="! i"
     let g:Todo_txt_second_level_sort_mode="i"
 
-Also `<LocalLeader>-x` is a toggle which allow you to unmark a task as done.
+Also `<LocalLeader>x` is a toggle which allow you to unmark a task as done.
 
 We also provide a nice complete function for project and context, to use it
 add the following lines to your vimrc:
 
-    " Use TodoComplete as the user complete
-    au filetype todo setlocal completefunc=TodoComplete
+    " Use TodoComplete as the omni complete function for todo files
+    au filetype todo setlocal omnifunc=TodoComplete
 
 You can also start automatically the completion when entering '+' or '@' by
 adding the next lines to your vimrc:
 
     " Auto complete projects
-    au filetype todo imap + +<C-X><C-U>
+    au filetype todo imap + +<C-X><C-O>
 
     " Auto complete contexts
-    au filetype todo imap @ @<C-X><C-U>
+    au filetype todo imap @ @<C-X><C-O>
 
 The TodoComplete function is designed to complete projects (starting by '+')
 and context (starting by '@'). If you use it on a regular word, it will do a
