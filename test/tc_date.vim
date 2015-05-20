@@ -32,7 +32,7 @@ let s:NON_EXISTING_DATE_INSERTED_DO_NOTHING = [
 
 function! s:tc.test_insert_date_normal_mode()
   call self.data.goto('lorem_ipsum')
-  call todo#txt#prepend_date()
+  call todo#txt#replace_date()
   call self.assert_equal(s:DATE_INSERTED, self.data.get('lorem_ipsum'))
 endfunction
 
@@ -43,40 +43,40 @@ function! s:tc.test_insert_date_insert_mode()
 endfunction
 
 function! s:tc.test_insert_date_visual_mode()
-  call self.data.visual_execute('call todo#txt#prepend_date()', 'lorem_ipsum')
+  call self.data.visual_execute('call todo#txt#replace_date()', 'lorem_ipsum')
   call self.assert_equal(s:DATE_INSERTED, self.data.get('lorem_ipsum'))
 endfunction
 
 function! s:tc.test_insert_date_after_priority_normal_mode()
-  call self.data.execute('call todo#txt#prepend_date()', 'date_after_priority')
+  call self.data.execute('call todo#txt#replace_date()', 'date_after_priority')
   call self.assert_equal(s:DATE_INSERTED_AFTER_PRIORITY, self.data.get('date_after_priority'))
 endfunction
 
 function! s:tc.test_insert_date_after_priority_visual_mode()
-  call self.data.visual_execute('call todo#txt#prepend_date()', 'date_after_priority_visual')
+  call self.data.visual_execute('call todo#txt#replace_date()', 'date_after_priority_visual')
   call self.assert_equal(s:DATE_INSERTED_AFTER_PRIORITY_VISUAL, self.data.get('date_after_priority_visual'))
 endfunction
 
 function! s:tc.test_insert_with_existing_date()
-  call self.data.execute('call todo#txt#prepend_date()', 'existing_date_no_priority')
+  call self.data.execute('call todo#txt#replace_date()', 'existing_date_no_priority')
   call self.assert_equal(s:DATE_INSERTED, self.data.get('existing_date_no_priority'))
 endfunction
 
 function! s:tc.test_insert_with_existing_date_and_priority()
-  call self.data.execute('call todo#txt#prepend_date()', 'existing_date_after_priority')
+  call self.data.execute('call todo#txt#replace_date()', 'existing_date_after_priority')
   call self.assert_equal(s:DATE_INSERTED_AFTER_PRIORITY, self.data.get('existing_date_after_priority'))
 endfunction
 
 function! s:tc.test_insert_with_existing_date_and_priority()
   let g:todo_existing_date = 'n'
-  call self.data.execute('call todo#txt#prepend_date()', 'existing_date_do_nothing')
+  call self.data.execute('call todo#txt#replace_date()', 'existing_date_do_nothing')
   call self.assert_equal(s:DATE_INSERTED_DO_NOTHING, self.data.get('existing_date_do_nothing'))
   unlet g:todo_existing_date
 endfunction
 
 function! s:tc.test_insert_with_existing_date_and_priority()
   let g:todo_existing_date = 'n'
-  call self.data.execute('call todo#txt#prepend_date()', 'non_existing_date_do_nothing')
+  call self.data.execute('call todo#txt#replace_date()', 'non_existing_date_do_nothing')
   call self.assert_equal(s:NON_EXISTING_DATE_INSERTED_DO_NOTHING, self.data.get('non_existing_date_do_nothing'))
   unlet g:todo_existing_date
 endfunction

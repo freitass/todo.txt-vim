@@ -97,11 +97,11 @@ if !hasmapto("date<Tab>",'i')
 endif
 
 if !hasmapto("<localleader>d",'n')
-    nnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#prepend_date()<CR>
+    nnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#replace_date()<CR>
 endif
 
 if !hasmapto("<localleader>d",'v')
-    vnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#prepend_date()<CR>
+    vnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#replace_date()<CR>
 endif
 
 " Mark done {{{2

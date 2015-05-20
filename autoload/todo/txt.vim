@@ -25,7 +25,7 @@ function! s:get_current_date()
     return strftime('%Y-%m-%d')
 endfunction
 
-function! todo#txt#prepend_date()
+function! todo#txt#replace_date()
     let current_line = getline('.')
     if (current_line =~ '^\(([a-zA-Z]) \)\?\d\{2,4\}-\d\{2\}-\d\{2\} ') &&
                 \ exists('g:todo_existing_date') && g:todo_existing_date == 'n'
