@@ -8,13 +8,13 @@ let s:TODAY = strftime("%Y-%m-%d")
 let s:FIRST_TASK_DONE = [
       \ 'x ' . s:TODAY . ' first task to be marked as done',
       \ 'second task to be marked as done',
-      \ 'third task to be marked as done',
+      \ '2015-05-20 third task to be marked as done',
       \ ]
 
 let s:ALL_TASKS_DONE = [
       \ 'x ' . s:TODAY . ' first task to be marked as done',
       \ 'x ' . s:TODAY . ' second task to be marked as done',
-      \ 'x ' . s:TODAY . ' third task to be marked as done',
+      \ 'x ' . s:TODAY . ' 2015-05-20 third task to be marked as done',
       \ ]
 
 function! s:tc.test_mark_as_done()

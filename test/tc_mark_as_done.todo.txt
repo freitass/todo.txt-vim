@@ -1,5 +1,5 @@
 # lorem_ipsum
 first task to be marked as done
 second task to be marked as done
-third task to be marked as done
+2015-05-20 third task to be marked as done
 # end_lorem_ipsum
