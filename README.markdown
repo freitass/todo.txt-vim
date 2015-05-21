@@ -34,5 +34,7 @@ Mark as done:
 `<localleader>X`   Mark all tasks as done  
 `<localleader>D`   Move completed tasks to done.txt  
 
+This plugin detects any text file with the name todo.txt or done.txt with an optional prefix that ends in a period (e.g. second.todo.txt, example.done.txt).
+
 If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
-Then you will be able to get the commands help with: :h todo.txt
+Then you will be able to get the commands help with: `:h todo.txt`.
