@@ -1,0 +1,32 @@
+*todo.txt*
+
+==============================================================================
+COMMANDS                                                       *todo-commands*
+
+`<leader>-s` : Sort the file
+
+`<leader>-s+` : Sort the file on +Projects
+
+`<leader>-s@` : Sort the file on @Contexts
+
+`<leader>-j` : Lower the priority of the current line
+
+`<leader>-k` : Increase the priority of the current line
+
+`<leader>-a` : Add the priority (A) to the current line
+
+`<leader>-b` : Add the priority (B) to the current line
+
+`<leader>-c` : Add the priority (C) to the current line
+
+`<leader>-d` : Insert the current date
+
+`date<tab>`  : (Insert mode) Insert the current date
+
+`<leader>-x` : Mark task as done (inserts current date as completion date)
+
+`<leader>-X` : Mark all tasks as completed
+
+`<leader>-D` : Move completed tasks to done.txt
+
+<leader> is \ by default, so <leader>-s means you type \s
