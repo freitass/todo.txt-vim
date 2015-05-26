@@ -185,7 +185,7 @@ endif
 
 " Sort @_sched by due: date {{{2
 if !hasmapto("<leader>sd".'n')
-    nnoremap <script> <silent> <buffer> <leader>sd :sort n /due:/<CR>
+    nnoremap <script> <silent> <buffer> <leader>sd :sort n /due:/<CR>:sort n /due:....-/<CR>:sort n /due:....-..-/<CR>
 endif
 
 " Folding {{{1
