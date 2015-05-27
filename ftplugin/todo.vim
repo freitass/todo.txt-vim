@@ -72,6 +72,14 @@ function! TodoTxtToggleComplete()
     endif
 endfunction
 
+function! TodoTxtSortDue()
+    :silent! %s/\(due:\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
+    :sort n /due:/
+    :silent! %s/\(due:\d\{4}\)/\1-/g
+    :silent! %s/\(due:\d\{4}-\d\{2}\)/\1-/g
+    " TODO: add time sorting (YYYY-MM-DD HH:MM)
+endfunction
+
 " Mappings {{{1
 " Sort tasks {{{2
 if !hasmapto("<leader>s",'n')
@@ -185,7 +193,7 @@ endif
 
 " Sort @_sched by due: date {{{2
 if !hasmapto("<leader>sd".'n')
-    nnoremap <script> <silent> <buffer> <leader>sd :sort n /due:/<CR>:sort n /due:....-/<CR>:sort n /due:....-..-/<CR>
+    nnoremap <script> <silent> <buffer> <leader>sd :call TodoTxtSortDue()<CR>
 endif
 
 " Folding {{{1
