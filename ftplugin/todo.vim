@@ -248,8 +248,8 @@ fun! TodoComplete(findstart, base)
         return start
     else
         let res = []
-        let file = readfile(expand("%:p"))
-        for line in file
+        let lines=getline(1,"$")
+        for line in lines
             if line =~ " ".a:base
                 let item={}
                 let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
@@ -257,7 +257,7 @@ fun! TodoComplete(findstart, base)
                     let item.info="Context: ".substitute(line,'.*\s\(@\S\S*\).*','\1',"")
                 elseif a:base =~ '@'
                     let l:pr=[]
-                    for line2 in file
+                    for line2 in lines
                         if line2 =~ l:item.word
                             call add(l:pr,substitute(line2,'.*\s\(+\S\S*\).*','\1',""))
                         endif
