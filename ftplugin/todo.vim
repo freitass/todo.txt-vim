@@ -248,24 +248,26 @@ fun! TodoComplete(findstart, base)
         return start
     else
         let res = []
-        let lines=getline(1,"$")
-        for line in lines
-            if line =~ " ".a:base
-                let item={}
-                let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
-                if a:base =~ '+'
-                    let item.info="Context: ".substitute(line,'.*\s\(@\S\S*\).*','\1',"")
-                elseif a:base =~ '@'
-                    let l:pr=[]
-                    for line2 in lines
-                        if line2 =~ l:item.word
-                            call add(l:pr,substitute(line2,'.*\s\(+\S\S*\).*','\1',""))
-                        endif
-                    endfor
-                    let item.info="Projects: ".join(uniq(l:pr), " ")
+        for bufnr in range(1,bufnr('$'))
+            let lines=getbufline(bufnr,1,"$")
+            for line in lines
+                if line =~ "([a-Z]).* ".a:base
+                    let item={}
+                    let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
+                    if a:base =~ '+'
+                        let item.info="Context: ".substitute(line,'.*\s\(@\S\S*\).*','\1',"")
+                    elseif a:base =~ '@'
+                        let l:pr=[]
+                        for line2 in lines
+                            if line2 =~ l:item.word
+                                call add(l:pr,substitute(line2,'.*\s\(+\S\S*\).*','\1',""))
+                            endif
+                        endfor
+                        let item.info="Projects: ".join(uniq(l:pr), " ")
+                    endif
+                    call add(res,item)
                 endif
-                call add(res,item)
-            endif
+            endfor
         endfor
         return res
     endif
