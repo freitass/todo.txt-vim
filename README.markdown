@@ -87,11 +87,8 @@ adding the next lines to your vimrc:
 The TodoComplete function is designed to complete projects (starting by '+')
 and context (starting by '@'). If you use it on a regular word, it will do a
 normal buffer completion.
-If you try to complete a project, it will propose all projects in the file and
-for each of them, it will show their context in the preview window.
+If you try to complete a project, it will propose all projects in all open
+buffers and for each of them, it will show their context and the name of the
+buffers in which they appears in the preview window.
 TodoCompelte does the same thing for context except that it gives in the
 preview the list of projects existing in each existing contexts.
-
-## Todo
-
-Complete documentation

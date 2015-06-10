@@ -3,7 +3,7 @@
 " Author:      Leandro Freitas <freitass@gmail.com>, David Beniamine <David@Beniamine.net>
 " License:     Vim license
 " Website:     http://github.com/dbeniamine/todo.txt-vim
-" Version:     0.5
+" Version:     0.6
 
 " Save context {{{1
 let s:save_cpo = &cpo

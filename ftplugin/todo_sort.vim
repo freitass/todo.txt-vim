@@ -3,7 +3,7 @@
 " Author:      David Beniamine <david@beniamine.net>
 " Licence:     Vim licence
 " Website:     http://github.com/dbeniamine/todo.txt.vim
-" Version:     0.5
+" Version:     0.6
 " vim: ts=4 sw=4 :help tw=78 cc=80
 
 " These two variables are parameters for the successive calls the vim sort
