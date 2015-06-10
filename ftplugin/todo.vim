@@ -247,30 +247,54 @@ fun! TodoComplete(findstart, base)
         endwhile
         return start
     else
+        " Opposite sign
+        let opp=a:base=~'+'?'@':'+'
+        " Search for matchs
         let res = []
         for bufnr in range(1,bufnr('$'))
             let lines=getbufline(bufnr,1,"$")
             for line in lines
                 if line =~ "[x\s0-9\-]*([a-Z]).* ".a:base
+                    " init temporary item
                     let item={}
                     let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
-                    if a:base =~ '+'
-                        let item.info="Context: ".substitute(line,'.*\s\(@\S\S*\).*','\1',"")
-                    elseif a:base =~ '@'
-                        let l:pr=[]
-                        for line2 in lines
-                            if line2 =~ l:item.word
-                                call add(l:pr,substitute(line2,'.*\s\(+\S\S*\).*','\1',""))
-                            endif
-                        endfor
-                        let item.info="Projects: ".join(uniq(l:pr), " ")
-                    endif
-                    let item.info.="\nBuffer: ".bufname(bufnr)
+                    let item.buffers=bufname(bufnr)
+                    let item.related=substitute(line,'.*\s\('.opp.'\S\S*\).*','\1',"")
                     call add(res,item)
                 endif
             endfor
         endfor
-        return res
+        call sort(res)
+        " Here all results are sorted in res, but we need to merge them
+        let ret=[]
+        let curitem={}
+        let curitem.word=res[0].word
+        let curitem.related=[]
+        let curitem.buffers=[]
+        for it in res
+            if curitem.word==it.word
+                " Merge results
+                if index(curitem.related,it.related) <0
+                    call add(curitem.related,it.related)
+                endif
+                if index(curitem.buffers,it.buffers) <0
+                    call add(curitem.buffers,it.buffers)
+                endif
+            else
+                " Create the definitive item
+                let resitem={}
+                let resitem.word=curitem.word
+                let resitem.info=opp=='+'?"Projects":"Contexts"
+                let resitem.info.=": ".join(curitem.related, ", ")
+                            \."\nBuffers: ".join(curitem.buffers, ", ")
+                call add(ret,resitem)
+                " Init new item from it
+                let curitem.word=it.word
+                let curitem.related=[it.related]
+                let curitem.buffers=[it.buffers]
+            endif
+        endfor
+        return ret
     endif
 endfun
 
