@@ -4,8 +4,8 @@
 
 This plugin is a fork of [freitass
 todo.txt](https://github.com/freitass/todo.txt-vim). It add severals functionalities including a [hierarchical sort](#sort), a
-[complete](#complete) function, some stuff to handle [due dates](#due_dates)
-and others stuff see [new features](#new_features).
+[complete](#completion) function, some stuff to handle [due dates](#due-dates)
+and others stuff see [new features](#new-features).
 
 Freitass announced on october 30th 2014 that he is not going to merge his version.
 
