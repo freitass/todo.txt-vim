@@ -32,7 +32,7 @@ This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. 
 
 `<LocalLeader>s@` : Sort the file on @Contexts
 
-`<leader>-sd` : Sort @_sched entries by due-date
+`<leader>-sd` : Sort the file by due-date
 
 `<LocalLeader>j` : Lower the priority of the current line
 
@@ -47,6 +47,8 @@ This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. 
 `<LocalLeader>d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
+
+`due:`  : (Insert mode) Insert 'due:' followed by the current date
 
 `<LocalLeader>x` : Toggle mark task as done (inserts current date as completion date)
 

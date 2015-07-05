@@ -79,15 +79,28 @@ endfunction
 function! TodoTxtSort()
     " vim :sort is usually stable
     " we sort first on contexts, then on projects and then on priority
-    :sort /@[a-zA-Z]*/ r
-    :sort /+[a-zA-Z]*/ r
-    :sort /\v\([A-Z]\)/ r
+    sort /@[a-zA-Z]*/ r
+    ssort /+[a-zA-Z]*/ r
+    sort /\v\([A-Z]\)/ r
 endfunction
 
 function! TodoTxtSortDue()
-    :silent! %s/\(due:\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
-    :sort! n /due:/
-    :silent! %s/\(due:\d\{4}\)\(\d\{2}\)/\1-\2-/g
+    silent! %s/\(due:\s*\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
+    " Sort adding entries with due dates add the beginning
+    sort n /due:/
+    " Count the number of lines
+    silent normal gg
+    execute "/due:"
+    let l:first=getpos(".")[1]
+    silent normal N
+    let l:last=getpos(".")[1]
+    let l:diff=l:last-l:first+1
+    " Put the sorted lines at the beginning of the file
+    execute ':'.l:first
+    execute ':d'.l:diff
+    silent normal gg
+    silent normal P
+    silent! %s/\(due:\s*\d\{4}\)\(\d\{2}\)/\1-\2-/g
     " TODO: add time sorting (YYYY-MM-DD HH:MM)
 endfunction
 
@@ -188,6 +201,10 @@ if !hasmapto("date<Tab>",'i')
     inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 endif
 
+if !hasmapto("due:",'i')
+    inoremap <script> <silent> <buffer> due: due: <C-R>=strftime("%Y-%m-%d")<CR>
+endif
+
 if !hasmapto("<localleader>d",'n')
     nnoremap <script> <silent> <buffer> <localleader>d :call TodoTxtPrependDate()<CR>
 endif
@@ -215,7 +232,7 @@ if !hasmapto("<localleader>D",'n')
     nnoremap <script> <silent> <buffer> <localleader>D :call TodoTxtRemoveCompleted()<CR>
 endif
 
-" Sort @_sched by due: date {{{2
+" Sort by due: date {{{2
 if !hasmapto("<localleader>sd".'n')
     nnoremap <script> <silent> <buffer> <localleader>sd :call TodoTxtSortDue()<CR>
 endif
