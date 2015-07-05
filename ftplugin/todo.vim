@@ -3,7 +3,7 @@
 " Author:      David Beniamine <David@Beniamine.net>, Leandro Freitas <freitass@gmail.com>
 " License:     Vim license
 " Website:     http://github.com/dbeniamine/todo.txt-vim
-" Version:     0.7
+" Version:     0.7.1
 
 " Save context {{{1
 let s:save_cpo = &cpo
@@ -79,9 +79,15 @@ endfunction
 function! TodoTxtSort()
     " vim :sort is usually stable
     " we sort first on contexts, then on projects and then on priority
-    sort /@[a-zA-Z]*/ r
-    ssort /+[a-zA-Z]*/ r
-    sort /\v\([A-Z]\)/ r
+    if expand('%')=~'done.txt'
+        silent! %s/\(x\s*\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
+        sort n /^x\s*/
+        silent! %s/\(x\s*\d\{4}\)\(\d\{2}\)/\1-\2-/g
+    else
+        sort /@[a-zA-Z]*/ r
+        sort /+[a-zA-Z]*/ r
+        sort /\v\([A-Z]\)/ r
+    endif
 endfunction
 
 function! TodoTxtSortDue()
@@ -269,6 +275,24 @@ function! TodoFoldText()
                 \ . ' Completed tasks '
 endfunction
 
+" Simple keyword completion on all buffers
+function! TodoKeywordComplete(base)
+        " Search for matchs
+        let res = []
+        for bufnr in range(1,bufnr('$'))
+            let lines=getbufline(bufnr,1,"$")
+            for line in lines
+                if line =~ a:base
+                    " init temporary item
+                    let item={}
+                    let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
+                    call add(res,item)
+                endif
+            endfor
+        endfor
+        return res
+endfunction
+
 " Intelligent completion for projects and Contexts
 fun! TodoComplete(findstart, base)
     if a:findstart
@@ -279,6 +303,9 @@ fun! TodoComplete(findstart, base)
         endwhile
         return start
     else
+        if a:base !~ '^+' && a:base !~ '^@'
+            return TodoKeywordComplete(a:base)
+        endif
         " Opposite sign
         let opp=a:base=~'+'?'@':'+'
         " Search for matchs

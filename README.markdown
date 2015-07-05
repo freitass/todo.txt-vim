@@ -95,7 +95,7 @@ adding the next lines to your vimrc:
 
 The TodoComplete function is designed to complete projects (starting by '+')
 and context (starting by '@'). If you use it on a regular word, it will do a
-normal buffer completion.
+normal keyword completion (on all buffers).
 If you try to complete a project, it will propose all projects in all open
 buffers and for each of them, it will show their context and the name of the
 buffers in which they appears in the preview window.
@@ -125,3 +125,6 @@ sorted by at the beginning of the file, the rest of the file is not modified.
 `<LocalLeader>x` is a toggle which allow you to unmark a task as done.
 
 Syntax highlighting for couples key:value
+
+If the current buffer is a done.txt file, the basic sort sorts on completion
+date.
