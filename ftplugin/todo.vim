@@ -1,9 +1,9 @@
 " File:        todo.txt.vim
 " Description: Todo.txt filetype detection
-" Author:      Leandro Freitas <freitass@gmail.com>, David Beniamine <David@Beniamine.net>
+" Author:      David Beniamine <David@Beniamine.net>, Leandro Freitas <freitass@gmail.com>
 " License:     Vim license
 " Website:     http://github.com/dbeniamine/todo.txt-vim
-" Version:     0.6
+" Version:     0.7
 
 " Save context {{{1
 let s:save_cpo = &cpo
@@ -85,12 +85,12 @@ function! TodoTxtSort()
 endfunction
 
 function! TodoTxtSortDue()
-    silent! %s/\(due:\s*\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
+    silent! %s/\([dD][uU][eE]:\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
     " Sort adding entries with due dates add the beginning
-    sort n /due:/
+    sort n /[dD][uU][eE]:/
     " Count the number of lines
     silent normal gg
-    execute "/due:"
+    execute "/[dD][uU][eE]:"
     let l:first=getpos(".")[1]
     silent normal N
     let l:last=getpos(".")[1]
@@ -100,7 +100,7 @@ function! TodoTxtSortDue()
     execute ':d'.l:diff
     silent normal gg
     silent normal P
-    silent! %s/\(due:\s*\d\{4}\)\(\d\{2}\)/\1-\2-/g
+    silent! %s/\([dD][uU][eE]:\d\{4}\)\(\d\{2}\)/\1-\2-/g
     " TODO: add time sorting (YYYY-MM-DD HH:MM)
 endfunction
 
@@ -202,7 +202,11 @@ if !hasmapto("date<Tab>",'i')
 endif
 
 if !hasmapto("due:",'i')
-    inoremap <script> <silent> <buffer> due: due: <C-R>=strftime("%Y-%m-%d")<CR>
+    inoremap <script> <silent> <buffer> due: due:<C-R>=strftime("%Y-%m-%d")<CR>
+endif
+
+if !hasmapto("DUE:",'i')
+    inoremap <script> <silent> <buffer> DUE: DUE:<C-R>=strftime("%Y-%m-%d")<CR>
 endif
 
 if !hasmapto("<localleader>d",'n')

@@ -19,6 +19,9 @@ COMMANDS                                                       *todo-commands*
 
 `<LocalLeader>spc` : Sort the file by project, context then by priority
 
+`<leader>-sd` : Sort the file by due-date. Entries with a due date appears
+sorted by at the beginning of the file, the rest of the file is not modified.
+
 `<LocalLeader>j` : Lower the priority of the current line
 
 `<LocalLeader>k` : Increase the priority of the current line
@@ -32,6 +35,10 @@ COMMANDS                                                       *todo-commands*
 `<LocalLeader>d` : Insert the current date
 
 `date<tab>`  : (Insert mode) Insert the current date
+
+`due:`  : (Insert mode) Insert `due:` followed by the current date
+
+`DUE:`  : (Insert mode) Insert `DUE:` followed by the current date
 
 `<LocalLeader>x` : Toggle mark task as done (inserts or remove current date as
                     completion date)
