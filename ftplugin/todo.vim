@@ -39,7 +39,6 @@ function! TodoTxtUnMarkAsDone()
 endfunction
 
 function! TodoTxtMarkAsDone()
-    "       call s:TodoTxtRemovePriority()
     call TodoTxtPrependDate()
     normal! Ix 
 endfunction
@@ -83,6 +82,13 @@ function! TodoTxtSort()
     :sort /@[a-zA-Z]*/ r
     :sort /+[a-zA-Z]*/ r
     :sort /\v\([A-Z]\)/ r
+endfunction
+
+function! TodoTxtSortDue()
+    :silent! %s/\(due:\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
+    :sort! n /due:/
+    :silent! %s/\(due:\d\{4}\)\(\d\{2}\)/\1-\2-/g
+    " TODO: add time sorting (YYYY-MM-DD HH:MM)
 endfunction
 
 " Mappings {{{1
@@ -207,6 +213,11 @@ endif
 " Remove completed {{{2
 if !hasmapto("<localleader>D",'n')
     nnoremap <script> <silent> <buffer> <localleader>D :call TodoTxtRemoveCompleted()<CR>
+endif
+
+" Sort @_sched by due: date {{{2
+if !hasmapto("<localleader>sd".'n')
+    nnoremap <script> <silent> <buffer> <localleader>sd :call TodoTxtSortDue()<CR>
 endif
 
 " Folding {{{1

@@ -9,6 +9,8 @@ COMMANDS                                                       *todo-commands*
 
 `<LocalLeader>s@` : Sort the file on @Contexts
 
+`<LocalLeader>s@` : Sort the file on due dates
+
 `<LocalLeader>sc` : Sort the file by context then by priority
 
 `<LocalLeader>scp` : Sort the file by context, project then by priority

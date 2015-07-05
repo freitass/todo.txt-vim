@@ -18,6 +18,10 @@ function for context and projects (see section 1.4).
 
     git clone https://github.com/dbeniamine/todo.txt-vim.git ~/.vim/bundle/todo.txt-vim
 
+If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
+Then you will be able to get the commands help with: :h todo.txt
+
+
 ## Features included in Freitass version
 
 This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few mappings, to help with editing these files:
@@ -27,6 +31,8 @@ This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. 
 `<LocalLeader>s+` : Sort the file on +Projects
 
 `<LocalLeader>s@` : Sort the file on @Contexts
+
+`<leader>-sd` : Sort @_sched entries by due-date
 
 `<LocalLeader>j` : Lower the priority of the current line
 
@@ -47,9 +53,6 @@ This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. 
 `<LocalLeader>X` : Mark all tasks as completed
 
 `<leader>-D` : Move completed tasks to done.txt
-
-If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
-Then you will be able to get the commands help with: :h todo.txt
 
 ## New features
 

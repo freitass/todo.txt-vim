@@ -9,38 +9,40 @@ if exists("b:current_syntax")
     finish
 endif
 
-syntax  match  TodoDone       '^[xX]\s.\+$'               contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityA  '^([aA])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityB  '^([bB])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityC  '^([cC])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityD  '^([dD])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityE  '^([eE])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityF  '^([fF])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityG  '^([gG])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityH  '^([hH])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityI  '^([iI])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityJ  '^([jJ])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityK  '^([kK])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityL  '^([lL])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityM  '^([mM])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityN  '^([nN])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityO  '^([oO])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityP  '^([pP])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityQ  '^([qQ])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityR  '^([rR])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityS  '^([sS])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityT  '^([tT])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityU  '^([uU])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityV  '^([vV])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityW  '^([wW])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityX  '^([xX])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityY  '^([yY])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
-syntax  match  TodoPriorityZ  '^([zZ])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
+syntax  match  TodoDone       '^[xX]\s.\+$'               contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityA  '^([aA])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityB  '^([bB])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityC  '^([cC])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityD  '^([dD])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityE  '^([eE])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityF  '^([fF])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityG  '^([gG])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityH  '^([hH])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityI  '^([iI])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityJ  '^([jJ])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityK  '^([kK])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityL  '^([lL])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityM  '^([mM])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityN  '^([nN])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityO  '^([oO])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityP  '^([pP])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityQ  '^([qQ])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityR  '^([rR])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityS  '^([sS])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityT  '^([tT])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityU  '^([uU])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityV  '^([vV])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityW  '^([wW])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityX  '^([xX])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityY  '^([yY])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityZ  '^([zZ])\s.\+$'             contains=TodoDue,TodoDate,TodoProject,TodoContext
 syntax  match  TodoDate       '\d\{2,4\}-\d\{2\}-\d\{2\}' contains=NONE
+syntax  match  TodoDue        'due:'                      contains=NONE
 syntax  match  TodoProject    '\(^\|\W\)+[^[:blank:]]\+'  contains=NONE
 syntax  match  TodoContext    '\(^\|\W\)@[^[:blank:]]\+'  contains=NONE
 
 " Other priority colours might be defined by the user
+highlight  default  link  TodoDue        Special
 highlight  default  link  TodoDone       Comment
 highlight  default  link  TodoPriorityA  Identifier
 highlight  default  link  TodoPriorityB  statement
