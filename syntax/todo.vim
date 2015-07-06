@@ -37,7 +37,7 @@ syntax  match  TodoPriorityX  '^([xX])\s.\+$'             contains=TodoKey,TodoD
 syntax  match  TodoPriorityY  '^([yY])\s.\+$'             contains=TodoKey,TodoDate,TodoProject,TodoContext
 syntax  match  TodoPriorityZ  '^([zZ])\s.\+$'             contains=TodoKey,TodoDate,TodoProject,TodoContext
 syntax  match  TodoDate       '\d\{2,4\}-\d\{2\}-\d\{2\}' contains=NONE
-syntax  match  TodoKey        '\S*:\S*'                   contains=TodoDate
+syntax  match  TodoKey        '\S*\S:\S\S*'                   contains=TodoDate
 syntax  match  TodoProject    '\(^\|\W\)+[^[:blank:]]\+'  contains=NONE
 syntax  match  TodoContext    '\(^\|\W\)@[^[:blank:]]\+'  contains=NONE
 
