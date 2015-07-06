@@ -32,7 +32,7 @@ if !hasmapto("<localleader>sp",'n')
     noremap <localleader>sp :call Todo_txt_HierarchicalSort('+', '',1)<CR>
 endif
 if !hasmapto("<localleader>spc",'n')
-    noremap <localleader>spc :call Todo_txt_HierarchicalSort('+', '@',0)<CR>
+    noremap <localleader>spc :call Todo_txt_HierarchicalSort('+', '@',1)<CR>
 endif
 
 " This is a Hierarchical sort designed for todo.txt todo lists, however it
@@ -63,42 +63,39 @@ function! Todo_txt_HierarchicalSort(symbol, symbolsub, dolastsort)
     let l:linecount=str2nr(split(v:statusmsg)[7])
 
     " Get all the groups names
-    let l:groups=GetGroups(a:symbol,0,l:linecount)
-
+    let l:groups=GetGroups(a:symbol,1,l:linecount)
     " Sort by groups
     execute 'sort'.l:sortmode.' /.\{-}\ze'.a:symbol.'/'
     for l:g in l:groups
+        let l:pat=a:symbol.l:g.'.*$'
+        normal gg
         " Find the beginning of the group
-        execute '/'.a:symbol.l:g.'.*$'
-        let l:groupBegin=getpos(".")[1]
+        let l:groupBegin=search(l:pat,'c')
         " Find the end of the group
-        silent normal N
-        let l:groupEnd=getpos(".")[1]
+        let l:groupEnd=search(l:pat,'b')
 
-        " I'm too lazy to sort one groups of one line
+        " I'm too lazy to sort groups of one line
         if(l:groupEnd==l:groupBegin)
             continue
         endif
-        if( a:symbolsub!='')
-            " Sort by subgroups
-            let l:subgroups=GetGroups(a:symbolsub,l:groupBegin,l:groupEnd)
-            " Go before the first line of the group
-            " Sort the group using the second symbol
-            for l:sg in l:subgroups
-                " Find the beginning of the subgroup
-                execute '/'.a:symbol.l:g.'.*'.a:symbolsub.l:sg.'.*$\|'.a:symbolsub.l:sg.'.*'.a:symbol.l:g.'.*$'
-                let l:subgroupBegin=getpos(".")[1]
-                " Find the end of the subgroup
-                silent normal N
-                let l:subgroupEnd=getpos(".")[1]
-                " Sort by priority
-                if a:dolastsort
+        if a:dolastsort
+            if( a:symbolsub!='')
+                " Sort by subgroups
+                let l:subgroups=GetGroups(a:symbolsub,l:groupBegin,l:groupEnd)
+                " Go before the first line of the group
+                " Sort the group using the second symbol
+                for l:sg in l:subgroups
+                    normal gg
+                    let l:pat=a:symbol.l:g.'.*'.a:symbolsub.l:sg.'.*$\|'.a:symbolsub.l:sg.'.*'.a:symbol.l:g.'.*$'
+                    " Find the beginning of the subgroup
+                    let l:subgroupBegin=search(l:pat,'c')
+                    " Find the end of the subgroup
+                    let l:subgroupEnd=search(l:pat,'b')
+                    " Sort by priority
                     execute l:subgroupBegin.','.l:subgroupEnd.'sort'.l:sortmodefinal
-                endif
-            endfor
-        else
-            " Sort by priority
-            if a:dolastsort
+                endfor
+            else
+                " Sort by priority
                 execute l:groupBegin.','.l:groupEnd.'sort'.l:sortmodefinal
             endif
         endif
