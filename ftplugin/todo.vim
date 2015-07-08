@@ -69,7 +69,7 @@ function! TodoTxtRemoveCompleted()
         let l:done=g:TodoTxtForceDoneName
     else
         let l:done=substitute(substitute(expand('%:t'),'todo','done',''),'Todo','Done','')
-    fi
+    endif
     let l:done_file = l:target_dir.'/'.l:done
     echo "Writing to ".l:done_file
     if !filewritable(l:done_file) && !filewritable(l:target_dir)
