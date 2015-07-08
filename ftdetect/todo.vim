@@ -3,7 +3,7 @@
 " Author:      David Beniamine <david@beniamine.net>, Leandro Freitas <freitass@gmail.com>
 " License:     Vim license
 " Website:     http://github.com/dbeniamine/todo.txt-vim
-" Version:     0.7
+" Version:     0.7.2
 
 autocmd BufNewFile,BufRead [Tt]odo.txt set filetype=todo
 autocmd BufNewFile,BufRead [Tt]odo-\d\\\{4\}-\d\\\{2\}-\d\\\{2\}.txt set filetype=todo
