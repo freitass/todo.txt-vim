@@ -65,7 +65,13 @@ endfunction
 function! TodoTxtRemoveCompleted()
     " Check if we can write to done.txt before proceeding.
     let l:target_dir = expand('%:p:h')
-    let l:done_file = l:target_dir.'/done.txt'
+    if exists("g:TodoTxtForceDoneName")
+        let l:done=g:TodoTxtForceDoneName
+    else
+        let l:done=substitute(substitute(expand('%:t'),'todo','done',''),'Todo','Done','')
+    fi
+    let l:done_file = l:target_dir.'/'.l:done
+    echo "Writing to ".l:done_file
     if !filewritable(l:done_file) && !filewritable(l:target_dir)
         echoerr "Can't write to file 'done.txt'"
         return
@@ -79,7 +85,7 @@ endfunction
 function! TodoTxtSort()
     " vim :sort is usually stable
     " we sort first on contexts, then on projects and then on priority
-    if expand('%')=~'done.txt'
+    if expand('%')=~'done.*.txt'
         silent! %s/\(x\s*\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
         sort n /^x\s*/
         silent! %s/\(x\s*\d\{4}\)\(\d\{2}\)/\1-\2-/g
@@ -277,20 +283,20 @@ endfunction
 
 " Simple keyword completion on all buffers
 function! TodoKeywordComplete(base)
-        " Search for matchs
-        let res = []
-        for bufnr in range(1,bufnr('$'))
-            let lines=getbufline(bufnr,1,"$")
-            for line in lines
-                if line =~ a:base
-                    " init temporary item
-                    let item={}
-                    let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
-                    call add(res,item)
-                endif
-            endfor
+    " Search for matchs
+    let res = []
+    for bufnr in range(1,bufnr('$'))
+        let lines=getbufline(bufnr,1,"$")
+        for line in lines
+            if line =~ a:base
+                " init temporary item
+                let item={}
+                let item.word=substitute(line,'.*\('.a:base.'\S*\).*','\1',"")
+                call add(res,item)
+            endif
         endfor
-        return res
+    endfor
+    return res
 endfunction
 
 " Intelligent completion for projects and Contexts
@@ -326,33 +332,35 @@ fun! TodoComplete(findstart, base)
         call sort(res)
         " Here all results are sorted in res, but we need to merge them
         let ret=[]
-        let curitem={}
-        let curitem.word=res[0].word
-        let curitem.related=[]
-        let curitem.buffers=[]
-        for it in res
-            if curitem.word==it.word
-                " Merge results
-                if index(curitem.related,it.related) <0
-                    call add(curitem.related,it.related)
+        if res != []
+            let curitem={}
+            let curitem.word=res[0].word
+            let curitem.related=[]
+            let curitem.buffers=[]
+            for it in res
+                if curitem.word==it.word
+                    " Merge results
+                    if index(curitem.related,it.related) <0
+                        call add(curitem.related,it.related)
+                    endif
+                    if index(curitem.buffers,it.buffers) <0
+                        call add(curitem.buffers,it.buffers)
+                    endif
+                else
+                    " Create the definitive item
+                    let resitem={}
+                    let resitem.word=curitem.word
+                    let resitem.info=opp=='+'?"Projects":"Contexts"
+                    let resitem.info.=": ".join(curitem.related, ", ")
+                                \."\nBuffers: ".join(curitem.buffers, ", ")
+                    call add(ret,resitem)
+                    " Init new item from it
+                    let curitem.word=it.word
+                    let curitem.related=[it.related]
+                    let curitem.buffers=[it.buffers]
                 endif
-                if index(curitem.buffers,it.buffers) <0
-                    call add(curitem.buffers,it.buffers)
-                endif
-            else
-                " Create the definitive item
-                let resitem={}
-                let resitem.word=curitem.word
-                let resitem.info=opp=='+'?"Projects":"Contexts"
-                let resitem.info.=": ".join(curitem.related, ", ")
-                            \."\nBuffers: ".join(curitem.buffers, ", ")
-                call add(ret,resitem)
-                " Init new item from it
-                let curitem.word=it.word
-                let curitem.related=[it.related]
-                let curitem.buffers=[it.buffers]
-            endif
-        endfor
+            endfor
+        endif
         return ret
     endif
 endfun

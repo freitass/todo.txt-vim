@@ -3,9 +3,11 @@
 ## What is this plugin ?
 
 This plugin is a fork of [freitass
-todo.txt](https://github.com/freitass/todo.txt-vim). It add severals functionalities including a [hierarchical sort](#sort), a
-[complete](#completion) function, some stuff to handle [due dates](#due-dates)
-and others stuff see [new features](#new-features).
+todo.txt](https://github.com/freitass/todo.txt-vim). It add severals
+functionalities including a [hierarchical sort](#sort), a
+[complete](#completion) function, some stuff to handle [due
+dates](#due-dates), a more [flexible file naming](#flexible-file-naming), and
+others stuff see [new features](#new-features).
 
 Freitass announced on october 30th 2014 that he is not going to merge his version.
 
@@ -119,6 +121,34 @@ sorted by at the beginning of the file, the rest of the file is not modified.
 `due:`  : (Insert mode) Insert `due:` followed by the current date
 
 `DUE:`  : (Insert mode) Insert `DUE:` followed by the current date
+
+### Flexible File naming
+
+This plugin provides a Flexible file naming for todo.txt, all the following
+names are recognized as todo:
+
+        YYYY-MM-[Tt]odo.txt
+        YYYY-MM-DD[Tt]odo.txt
+        [Tt]odo-YYYY-MM.txt
+        [Tt]odo-YYYY-MM-DD.txt
+        [Tt]odo.txt
+        [Tt]oday.txt
+
+And obviously the same are recognize as done:
+
+        YYYY-MM-[Dd]one.txt
+        YYYY-MM-DD[Dd]one.txt
+        [Dd]one-YYYY-MM.txt
+        [Dd]one-YYYY-MM-DD.txt
+        [Dd]one.txt
+        [Dd]one-[Tt]oday.txt
+
+Moreover, remove complete tasks `<LocalLeader>D` moves the task to the
+done.txt file corresponding to the current todo.txt, aka if you are editing
+2015-07-07-todo.txt, the done file while be 2015-07-07-done.txt. If you don't
+like this behavior, you can set the default done.txt name:
+
+    let g:TodoTxtForceDoneName='done.txt'
 
 ### Others
 

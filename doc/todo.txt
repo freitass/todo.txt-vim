@@ -45,9 +45,9 @@ sorted by at the beginning of the file, the rest of the file is not modified.
 
 `<LocalLeader>X` : Mark all tasks as completed
 
-`<LocalLeader>D` : Move completed tasks to done.txt
+`<LocalLeader>D` : Move completed tasks to done file, see |todo-flexibleFileNaming|
 
-<LocalLeader> is \ by default, so <leader>-s means you type \s
+`<LocalLeader>` is \ by default, so ̀`<LocaLeader>-s` means you type \s
 
 ===============================================================================
 CONFIGURATION                                              *todo-configuration*
@@ -60,26 +60,35 @@ g:Todo_txt_second_level_sort_mode
 
 Defaults values are:
 
-g:Todo_txt_first_level_sort_mode="i"
-g:Todo_txt_second_level_sort_mode="i"
-
+>
+    g:Todo_txt_first_level_sort_mode="i"
+    g:Todo_txt_second_level_sort_mode="i"
+<
 
 For more information on the available flags see help :sort
 
 We also provide a nice complete function for project and context, to use it
 add the following lines to your vimrc:
-
-" Use TodoComplete as the omni complete for todo files
-au filetype todo setlocal omnifunc=TodoComplete
+>
+    " Use TodoComplete as the omni complete for todo files
+    au filetype todo setlocal omnifunc=TodoComplete
+<
 
 You can also start automatically the completion when entering '+' or '@' by
 adding the next lines to your vimrc:
+>
+    " Auto complete projects
+    au filetype todo imap <buffer> + +<C-X><C-O>
 
-" Auto complete projects
-au filetype todo imap <buffer> + +<C-X><C-O>
-
-" Auto complete contexts
-au filetype todo imap <buffer> @ @<C-X><C-O>
+    " Auto complete contexts
+    au filetype todo imap <buffer> @ @<C-X><C-O>
+<
+To force completed task to be moved to a file independently from the current
+file name, add the following to your vimrc:
+>
+    let g:TodoTxtForceDoneName='done.txt'
+<
+For more explanations, see |todo-flexibleFileNaming|
 
 ===============================================================================
 COMPLETION                                                      *todo-complete*
@@ -92,3 +101,33 @@ buffers and for each of them, it will show their context and the name of the
 buffers in which they appears in the preview window.
 TodoCompelte does the same thing for context except that it gives in the
 preview the list of projects existing in each existing contexts.
+
+===============================================================================
+FLEXIBLE FILE NAMING                                  *todo-flexibleFileNaming*
+
+This plugin provides a Flexible file naming for todo.txt, all the following
+names are recognized as todo:
+>
+    YYYY-MM-[Tt]odo.txt
+    YYYY-MM-DD[Tt]odo.txt
+    [Tt]odo-YYYY-MM.txt
+    [Tt]odo-YYYY-MM-DD.txt
+    [Tt]odo.txt
+    [Tt]oday.txt
+<
+And obviously the same are recognize as done:
+>
+    YYYY-MM-[Dd]one.txt
+    YYYY-MM-DD[Dd]one.txt
+    [Dd]one-YYYY-MM.txt
+    [Dd]one-YYYY-MM-DD.txt
+    [Dd]one.txt
+    [Dd]one-[Tt]oday.txt
+<
+Moreover, remove complete tasks `<LocalLeader>D` moves the task to the
+done.txt file corresponding to the current todo.txt, aka if you are editing
+2015-07-07-todo.txt, the done file while be 2015-07-07-done.txt. If you don't
+like this behavior, you can set the default done.txt name:
+>
+    let g:TodoTxtForceDoneName='done.txt'
+<
