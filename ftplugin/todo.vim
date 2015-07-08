@@ -73,7 +73,7 @@ function! TodoTxtRemoveCompleted()
     let l:done_file = l:target_dir.'/'.l:done
     echo "Writing to ".l:done_file
     if !filewritable(l:done_file) && !filewritable(l:target_dir)
-        echoerr "Can't write to file 'done.txt'"
+        echoerr "Can't write to file '".l:done_file."'"
         return
     endif
 
@@ -85,7 +85,7 @@ endfunction
 function! TodoTxtSort()
     " vim :sort is usually stable
     " we sort first on contexts, then on projects and then on priority
-    if expand('%')=~'done.*.txt'
+    if expand('%')=~'[Dd]one.*.txt'
         silent! %s/\(x\s*\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\1\2\3/g
         sort n /^x\s*/
         silent! %s/\(x\s*\d\{4}\)\(\d\{2}\)/\1-\2-/g
