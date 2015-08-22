@@ -1,5 +1,8 @@
 # Readme
 
+**Note:** Since v0.7.3, `TodoComplete` is `todo#Complete`, you might need to
+update your vimrc.
+
 ## What is this plugin ?
 
 This plugin is a fork of [freitass
@@ -83,8 +86,8 @@ see :help sort
 We also provide a nice complete function for project and context, to use it
 add the following lines to your vimrc:
 
-    " Use TodoComplete as the omni complete function for todo files
-    au filetype todo setlocal omnifunc=TodoComplete
+    " Use todo#complete as the omni complete function for todo files
+    au filetype todo setlocal omnifunc=todo#complete
 
 You can also start automatically the completion when entering '+' or '@' by
 adding the next lines to your vimrc:
@@ -95,7 +98,7 @@ adding the next lines to your vimrc:
     " Auto complete contexts
     au filetype todo imap <buffer> @ @<C-X><C-O>
 
-The TodoComplete function is designed to complete projects (starting by '+')
+The `todo#complete` function is designed to complete projects (starting by '+')
 and context (starting by '@'). If you use it on a regular word, it will do a
 normal keyword completion (on all buffers).
 If you try to complete a project, it will propose all projects in all open

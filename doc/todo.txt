@@ -1,5 +1,8 @@
 *todo.txt*
 
+Note: Since v0.7.3, `TodoComplete` is `todo#Complete`, you might need to
+update your vimrc.
+
 ==============================================================================
 COMMANDS                                                       *todo-commands*
 
@@ -70,8 +73,8 @@ For more information on the available flags see help :sort
 We also provide a nice complete function for project and context, to use it
 add the following lines to your vimrc:
 >
-    " Use TodoComplete as the omni complete for todo files
-    au filetype todo setlocal omnifunc=TodoComplete
+    " Use todo#Completete as the omni complete for todo files
+    au filetype todo setlocal omnifunc=todo#Complete
 <
 
 You can also start automatically the completion when entering '+' or '@' by
@@ -93,7 +96,7 @@ For more explanations, see |todo-flexibleFileNaming|
 ===============================================================================
 COMPLETION                                                      *todo-complete*
 
-The TodoComplete function is designed to complete projects (starting by '+')
+The `todo#Complete`te function is designed to complete projects (starting by '+')
 and context (starting by '@'). If you use it on a regular word, it will do a
 normal keyword completion (on all buffers).
 If you try to complete a project, it will propose all projects in all open
