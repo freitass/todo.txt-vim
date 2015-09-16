@@ -58,19 +58,27 @@ function! todo#PrependDate()
     normal! 0"=strftime("%Y-%m-%d ")P
 endfunction
 
-function! todo#ToggleMarkAsDone()
+function! todo#ToggleMarkAsDone(status)
     if (getline(".") =~ 'x\s*\d\{4\}')
-        :call todo#UnMarkAsDone()
+        :call todo#UnMarkAsDone(a:status)
     else
-        :call todo#MarkAsDone()
+        :call todo#MarkAsDone(a:status)
     endif
 endfunction
 
-function! todo#UnMarkAsDone()
-    :s/\s*x\s*\d\{4}-\d\{1,2}-\d\{1,2}\s*//g
+function! todo#UnMarkAsDone(status)
+    if a:status==''
+        let pat=''
+    else
+        let pat=' '.a:status
+    endif
+    exec ':s/\s*x\s*\d\{4}-\d\{1,2}-\d\{1,2}'.pat.'\s*//g'
 endfunction
 
-function! todo#MarkAsDone()
+function! todo#MarkAsDone(status)
+    if a:status!=''
+        exec 'normal! I'.a:status.' '
+    endif
     call todo#PrependDate()
     normal! Ix 
 endfunction

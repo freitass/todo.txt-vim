@@ -164,6 +164,8 @@ like this behavior, you can set the default done.txt name:
 
 `<LocalLeader>x` is a toggle which allow you to unmark a task as done.
 
+`<LocalLeader>c` Mark a task cancelled
+
 Syntax highlighting for couples key:value
 
 If the current buffer is a done.txt file, the basic sort sorts on completion

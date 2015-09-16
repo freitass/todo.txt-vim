@@ -122,16 +122,27 @@ endif
 
 " Mark done {{{2
 if !hasmapto("<localleader>x",'n')
-    nnoremap <script> <silent> <buffer> <localleader>x :call todo#ToggleMarkAsDone()<CR>
+    nnoremap <script> <silent> <buffer> <localleader>x :call todo#ToggleMarkAsDone('')<CR>
 endif
 
 if !hasmapto("<localleader>x",'v')
-    vnoremap <script> <silent> <buffer> <localleader>x :call todo#ToggleMarkAsDone()<CR>
+    vnoremap <script> <silent> <buffer> <localleader>x :call todo#ToggleMarkAsDone('')<CR>
 endif
+
+" Mark done {{{2
+if !hasmapto("<localleader>c",'n')
+    nnoremap <script> <silent> <buffer> <localleader>c :call todo#ToggleMarkAsDone('Cancelled')<CR>
+endif
+
+if !hasmapto("<localleader>c",'v')
+    vnoremap <script> <silent> <buffer> <localleader>c :call todo#ToggleMarkAsDone('Cancelled')<CR>
+endif
+
+
 
 " Mark all done {{{2
 if !hasmapto("<localleader>X",'n')
-    nnoremap <script> <silent> <buffer> <localleader>X :call todo#MarkAllAsDone()<CR>
+    nnoremap <script> <silent> <buffer> <localleader>X :call todo#MarkAllAsDone('')<CR>
 endif
 
 " Remove completed {{{2
