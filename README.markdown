@@ -16,6 +16,19 @@ Freitass announced on october 30th 2014 that he is not going to merge his versio
 
 ## Install
 
+### Vizardry
+
+If you have [Vizardry](https://github.com/dbeniamine/vizardry) installed, you
+can run from vim:
+
+    :Invoke -u dbeniamine todo.txt-vim
+
+### Pathogen install
+
+    git clone https://github.com/dbeniamine/todo.txt-vim.git ~/.vim/bundle/todo.txt-vim
+
+Then from vim: `:Helptags` to update the doc
+
 ### Quick install
 
     git clone https://github.com/dbeniamine/todo.txt-vim.git
@@ -26,12 +39,6 @@ Freitass announced on october 30th 2014 that he is not going to merge his versio
 If you want the help installed, run `:helptags ~/.vim/doc` inside vim after
 having copied the files.  Then you will be able to get the commands help with:
 `:h todo.txt`
-
-### Pathogen install
-
-    git clone https://github.com/dbeniamine/todo.txt-vim.git ~/.vim/bundle/todo.txt-vim
-
-Then from vim: `:Helptags` to update the doc
 
 ## Features included in Freitass version
 
