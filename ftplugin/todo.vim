@@ -130,12 +130,12 @@ if !hasmapto("<localleader>x",'v')
 endif
 
 " Mark done {{{2
-if !hasmapto("<localleader>c",'n')
-    nnoremap <script> <silent> <buffer> <localleader>c :call todo#ToggleMarkAsDone('Cancelled')<CR>
+if !hasmapto("<localleader>C",'n')
+    nnoremap <script> <silent> <buffer> <localleader>C :call todo#ToggleMarkAsDone('Cancelled')<CR>
 endif
 
-if !hasmapto("<localleader>c",'v')
-    vnoremap <script> <silent> <buffer> <localleader>c :call todo#ToggleMarkAsDone('Cancelled')<CR>
+if !hasmapto("<localleader>C",'v')
+    vnoremap <script> <silent> <buffer> <localleader>C :call todo#ToggleMarkAsDone('Cancelled')<CR>
 endif
 
 
