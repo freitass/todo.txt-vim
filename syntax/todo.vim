@@ -52,8 +52,8 @@ highlight  default  link  TodoContext    Special
 
 if has('python')
     let b:curdir = expand('<sfile>:p:h')
-    let s:script_dir = b:curdir . "/../python/"
-    execute "pyfile " . b:curdir . "/../python/todo.py"
+    let s:script_dir = b:curdir . "/python/"
+    execute "pyfile " . s:script_dir. "todo.py"
 else
     echom "Your version of vim has no python support. Overdue dates won't be highlighted"
 endif
