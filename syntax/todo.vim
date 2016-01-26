@@ -35,7 +35,7 @@ syntax  match  TodoPriorityV  '^([vV])\s.\+$'             contains=TodoDate,Todo
 syntax  match  TodoPriorityW  '^([wW])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
 syntax  match  TodoPriorityX  '^([xX])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
 syntax  match  TodoPriorityY  '^([yY])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
-syntax  match  TodoPriorityZ  '^([zZ])\s.\+$'             contains=TodoDate,TodoProject,TodoContext
+syntax  match  TodoPriorityZ  '^([zZ])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
 
 syntax  match  TodoDate       '\d\{2,4\}-\d\{2\}-\d\{2\}' contains=NONE
 syntax  match  TodoProject    '\(^\|\W\)+[^[:blank:]]\+'  contains=NONE
