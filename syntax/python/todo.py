@@ -1,5 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+# File:        todo.py
+# Description: Todo.txt overdue date syntax script
+# License:     Vim license
+# Website:     http://github.com/freitass/todo.txt-vim
+# Version:     0.1
+
 import vim
 import os
 import sys
