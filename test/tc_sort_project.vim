@@ -1,5 +1,5 @@
 let s:here = expand('<sfile>:p:h')
-let s:tc = unittest#testcase#new('Sort Project', 
+let s:tc = unittest#testcase#new('Sort Project',
       \ { 'data': s:here . '/tc_sort_project.todo.txt' })
 
 let s:LEADER = mapleader

@@ -20,7 +20,7 @@ def _year_regex_after(year):
             regex = '|' + year[0:idx]
             regex += '9' if digit == '8' else '[%s-9]' % str(int(digit) + 1)
             if idx < len(year) - 1:
-                regex += '\d{%s}' % (len(year) - (idx + 1)) 
+                regex += '\d{%s}' % (len(year) - (idx + 1))
             year_regex += regex
 
     year_regex += ')'
@@ -40,7 +40,7 @@ def _month_regex_after(year, month):
             if digit2 == '8':
                 month_regex = r'(' + month_regex + r'|09)'
             else:
-                month_regex = r'(' + month_regex + r'|0[%s-9])' 
+                month_regex = r'(' + month_regex + r'|0[%s-9])'
                 month_regex = month_regex % str(int(digit2) + 1)
     return '-'.join((year, month_regex, r'\d{2}'))
 

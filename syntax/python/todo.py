@@ -16,11 +16,11 @@ if os.path.isdir(dateregex_dir):
     sys.path.insert(0, dateregex_dir)
 
 def add_due_date_syntax_highlight():
-    try: 
+    try:
         from dateregex import regex_date_before
     except ImportError:
         print("dateregex module not found. Overdue dates won't be highlighted")
-        return 
+        return
 
     regex = regex_date_before(date.today())
     regex = r'(^|<)due:%s(>|$)' % regex

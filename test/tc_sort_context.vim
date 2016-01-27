@@ -1,5 +1,5 @@
 let s:here = expand('<sfile>:p:h')
-let s:tc = unittest#testcase#new('Sort Context', 
+let s:tc = unittest#testcase#new('Sort Context',
       \ { 'data': s:here . '/tc_sort_context.todo.txt' })
 
 let s:LEADER = mapleader

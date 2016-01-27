@@ -41,7 +41,7 @@ endfunction
 function! todo#txt#mark_as_done()
     call s:remove_priority()
     call todo#txt#prepend_date()
-    normal! Ix 
+    normal! Ix
 endfunction
 
 function! todo#txt#mark_all_as_done()

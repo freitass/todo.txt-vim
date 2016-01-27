@@ -10,7 +10,7 @@
 from datetime import date, timedelta, MINYEAR
 
 def _year_regex_before(year):
-    if int(year) <= MINYEAR: 
+    if int(year) <= MINYEAR:
         return None
     year_regex = r'('
     year_regex += r'\d{1,%s}' % str(len(year) - 1) if len(year) > 1 else ''
@@ -19,12 +19,12 @@ def _year_regex_before(year):
             regex = '|' + year[0:idx]
             regex += '0' if digit == '1' else '[0-%s]' % str(int(digit) - 1)
             if idx < len(year) - 1:
-                regex += '\d{%s}' % (len(year) - (idx + 1)) 
+                regex += '\d{%s}' % (len(year) - (idx + 1))
             year_regex += regex
 
     year_regex += ')'
     return '-'.join((year_regex, r'\d{2}', r'\d{2}'))
-    
+
 def _month_regex_before(year, month):
     if month == '01':
         return None
@@ -33,7 +33,7 @@ def _month_regex_before(year, month):
     if digit1 == '0':
         month_regex = '01' if month == '02' else r'0[1-%s]' % str(int(digit2) - 1)
     elif month == '10':
-        month_regex = r'0\d' 
+        month_regex = r'0\d'
     elif month == '11':
         month_regex = r'(0\d|10)'
     else:
@@ -63,7 +63,7 @@ def _day_regex_before(year, month, day):
     return '-'.join((year, month, day_regex))
 
 
-    
+
 
 def regex_date_before(given_date):
     year, month, day = given_date.isoformat().split('-')
