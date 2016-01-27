@@ -8,13 +8,10 @@ A new feature was added to highlight dates in overdue tasks as an Error (as sugg
 
 If your Vim installation does **not** have Python support, this plugin **will work just fine** but this feature will be disabled.
 
-If you use [Vundle][https://github.com/VundleVim/Vundle.vim], [Pathogen][https://github.com/tpope/vim-pathogen] or another plugin manager, you might need to run `git submodule update --init` manualy inside the plugin directory after installation for this feature to work.
-
 ### Quick install
 
     git clone git://github.com/freitass/todo.txt-vim.git
     cd todo.txt-vim
-    git submodule update --init
     cp -R * ~/.vim
 
 
