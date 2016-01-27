@@ -2,6 +2,11 @@
 
 As it was suggested on issue [#28](https://github.com/freitass/todo.txt-vim/issues/28) (and as recommended by vim's documentation), all mappings were changed to use `<localleader>` instead of `<leader>`. If you don't have `maplocalleader` set on your environment then yours is probably `\`. For more information on that regard, please take a look at `:h <Localleader>`.
 
+### (Jan 2016) Note: Overdue date highlight and Python Optional dependency
+
+A new feature was added to highlight dates in overdue tasks as an Error (as suggested on issue [#44][https://github.com/freitass/todo.txt-vim/issues/44]). It depends on a Python library, however, and as such will only be able to work if your version of Vim was compiled with the `+python` option (as most common versions do).
+
+If your Vim installation does **not** have Python support, this plugin **will work just fine** but this feature will be disabled.
 
 ### Quick install
 
@@ -17,6 +22,7 @@ Sorting tasks:
 `<localleader>s+`  Sort the file on +Projects  
 `<localleader>s@`  Sort the file on @Contexts  
 `<localleader>sd`  Sort the file on dates  
+`<localleader>sdd`  Sort the file on due dates  
 
 Edit priority:  
 `<localleader>j`   Decrease the priority of the current line  
