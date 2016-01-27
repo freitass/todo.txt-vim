@@ -4,7 +4,7 @@ As it was suggested on issue [#28](https://github.com/freitass/todo.txt-vim/issu
 
 ### (Jan 2016) Note: Overdue date highlight and Python Optional dependency
 
-A new feature was added to highlight dates in overdue tasks as an Error (as suggested on issue [#44][https://github.com/freitass/todo.txt-vim/issues/44]). It depends on a Python library, however, and as such will only be able to work if your version of Vim was compiled with the `+python` option (as most common versions do).
+A new feature was added to highlight dates in overdue tasks as an Error (as suggested on issue [#44](https://github.com/freitass/todo.txt-vim/issues/44)). It depends on a Python library, however, and as such will only be able to work if your version of Vim was compiled with the `+python` option (as most common versions do).
 
 If your Vim installation does **not** have Python support, this plugin **will work just fine** but this feature will be disabled.
 
