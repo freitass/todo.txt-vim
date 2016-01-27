@@ -1,3 +1,0 @@
-[submodule "syntax/python/dateregex"]
-	path = syntax/python/dateregex
-	url = https://github.com/victal/dateregex.git
