@@ -7,5 +7,5 @@
 # Website:     http://github.com/freitass/todo.txt-vim
 # Version:     0.1
 
-from after import regex_date_after
-from before import regex_date_before
+from dateregex.after import regex_date_after
+from dateregex.before import regex_date_before
