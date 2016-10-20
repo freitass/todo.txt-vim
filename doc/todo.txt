@@ -56,5 +56,13 @@ date of creation: >
   r - replace existing date (default)
   n - do nothing
 
+                                                      *'g:todo_existing_date'*
+Specify if the plugin should load the python module. Useful if you use Neovim
+for example or if perhaps you just don't have/want python for vim: >
+  let g:todo_load_python = 1
+<
+  1 - Load (default)
+  0 - Don't load
+
 ===============================================================================
 vim:ft=help:et:ts=2:sw=2:sts=2:norl
