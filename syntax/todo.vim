@@ -50,7 +50,7 @@ highlight  default  link  TodoDate       PreProc
 highlight  default  link  TodoProject    Special
 highlight  default  link  TodoContext    Special
 
-if g:todo_load_python
+if exists('g:todo_load_python') && g:todo_load_python
     if has('python')
         let b:curdir = expand('<sfile>:p:h')
         let s:script_dir = b:curdir . "/python/"
