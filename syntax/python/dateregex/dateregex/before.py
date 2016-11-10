@@ -44,7 +44,7 @@ def _month_regex_before(year, month):
 def _day_regex_before(year, month, day):
     if day == '01':
         return None
-    last_month_day = str((date(int(year), (int(month) + 1) % 12, 1) + - date.resolution).day)
+    last_month_day = str((date(int(year), int(month) % 12 + 1, 1) + - date.resolution).day)
     last_digit1, last_digit2 = last_month_day
 
     digit1, digit2 = day
