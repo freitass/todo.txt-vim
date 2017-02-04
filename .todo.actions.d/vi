@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ $1 == "usage" ]]; then
+   echo "todo.sh vi [extra args]: opens todo.txt file in vi, with optional commands provided " 
+else
+   vi "${@:2}"  $TODO_FILE 
+fi

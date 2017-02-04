@@ -13,6 +13,8 @@ If your Vim installation does **not** have Python support, this plugin **will wo
     git clone git://github.com/freitass/todo.txt-vim.git
     cd todo.txt-vim
     cp -R * ~/.vim
+    #optional: add a vi plugin to todo.sh
+    ln -s ~/.vim/.todo.actions.d/vi ~/.todo.actions.d/vi
 
 
 This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few mappings, to help with editing these files:
