@@ -99,6 +99,12 @@ function! todo#txt#sort_by_due_date() range
     execute a:firstline . "," . a:lastline . "g!/" . l:date_regex . "/m" . a:lastline
 endfunction
 
+function! todo#txt#sort_by_start_date() range
+    let l:date_regex = "t:\\d\\{2,4\\}-\\d\\{2\\}-\\d\\{2\\}"
+    execute a:firstline . "," . a:lastline . "sort /" . l:date_regex . "/ r"
+    execute a:firstline . "," . a:lastline . "g!/" . l:date_regex . "/m" . a:lastline
+endfunction
+
 " Increment and Decrement The Priority
 :set nf=octal,hex,alpha
 
