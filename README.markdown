@@ -14,6 +14,14 @@ If your Vim installation does **not** have Python support, this plugin **will wo
     cd todo.txt-vim
     cp -R * ~/.vim
 
+Also make sure your .vimrc contains
+    
+    syntax on
+    filetype plugin on
+
+You can set the `<localleader>` in your .vimrc file with 
+    
+    let maplocalleader="<yourKey>"
 
 This plugin gives syntax highlighting to [todo.txt](http://todotxt.com/) files. It also defines a few mappings, to help with editing these files:
 
