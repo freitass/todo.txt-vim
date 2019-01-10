@@ -34,11 +34,11 @@ nnoremap <script> <silent> <buffer> <localleader>j :call todo#txt#prioritize_inc
 vnoremap <script> <silent> <buffer> <localleader>j :call todo#txt#prioritize_increase()<CR>
 nnoremap <script> <silent> <buffer> <localleader>k :call todo#txt#prioritize_decrease()<CR>
 vnoremap <script> <silent> <buffer> <localleader>k :call todo#txt#prioritize_decrease()<CR>
-nnoremap <script> <silent> <buffer> <localleader>a :call todo#txt#prioritize_add('A')<CR>
+nnoremap <script> <silent> <buffer> <localleader>a :call todo#txt#prioritize_add('A')<CR>A
 vnoremap <script> <silent> <buffer> <localleader>a :call todo#txt#prioritize_add('A')<CR>
-nnoremap <script> <silent> <buffer> <localleader>b :call todo#txt#prioritize_add('B')<CR>
+nnoremap <script> <silent> <buffer> <localleader>b :call todo#txt#prioritize_add('B')<CR>A
 vnoremap <script> <silent> <buffer> <localleader>b :call todo#txt#prioritize_add('B')<CR>
-nnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>
+nnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>A
 vnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>
 
 " Insert date {{{2
