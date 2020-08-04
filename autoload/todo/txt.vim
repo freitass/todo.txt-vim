@@ -71,7 +71,7 @@ function! todo#txt#remove_completed()
     " Check for user-defined g:todo_done_filename
     if exists("g:todo_done_filename")
         let l:todo_done_filename = g:todo_done_filename
-    elseif expand('%:t') = 'Todo.txt'
+    elseif expand('%:t') == 'Todo.txt'
         let l:todo_done_filename = 'Done.txt'
     else
         let l:todo_done_filename = 'done.txt'
