@@ -53,6 +53,13 @@ vnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#mark_as_done()
 " Mark all done {{{2
 nnoremap <script> <silent> <buffer> <localleader>X :call todo#txt#mark_all_as_done()<CR>
 
+" Unmark done {{{2
+nnoremap <script> <silent> <buffer> <localleader>u :call todo#txt#unmark_as_done()<CR>
+vnoremap <script> <silent> <buffer> <localleader>u :call todo#txt#unmark_as_done()<CR>
+
+" Unmark all done {{{2
+nnoremap <script> <silent> <buffer> <localleader>U :call todo#txt#unmark_all_as_done()<CR>
+
 " Remove completed {{{2
 nnoremap <script> <silent> <buffer> <localleader>D :call todo#txt#remove_completed()<CR>
 
