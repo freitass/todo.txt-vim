@@ -43,9 +43,11 @@ Date:
 `<localleader>d`   Set current task's creation date to the current date  
 `date<tab>`        (Insert mode) Insert the current date  
 
-Mark as done:  
+Mark / unmark as done:  
 `<localleader>x`   Mark current task as done  
 `<localleader>X`   Mark all tasks as done  
+`<localleader>u`   Mark current task as undone  
+`<localleader>U`   Mark all tasks as undone  
 `<localleader>D`   Move completed tasks to done.txt  
 
 This plugin detects any text file with the name todo.txt or done.txt with an optional prefix that ends in a period (e.g. second.todo.txt, example.done.txt).

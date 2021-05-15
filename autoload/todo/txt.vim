@@ -39,13 +39,21 @@ function! todo#txt#replace_date()
 endfunction
 
 function! todo#txt#mark_as_done()
-    call s:remove_priority()
+    " call s:remove_priority()
     call todo#txt#prepend_date()
     execute 'normal! Ix '
 endfunction
 
 function! todo#txt#mark_all_as_done()
     :g!/^x /:call todo#txt#mark_as_done()
+endfunction
+
+function! todo#txt#unmark_as_done()
+    :s/^x \(\d\{2,4\}-\d\{2\}-\d\{2\} \)\?//ge
+endfunction
+
+function! todo#txt#unmark_all_as_done()
+    :g/^x /:call todo#txt#unmark_as_done()
 endfunction
 
 function! s:append_to_file(file, lines)
