@@ -26,6 +26,7 @@ CONTENTS                                                       *todo-contents*
 	`<localleader>s@`  Sort the file on @Contexts
 	`<localleader>sd`  Sort the file on dates
 	`<localleader>sdd` Sort the file on due dates (i.e. due:2015-10-25)
+	<localleader>sdt Sort the file on due dates (i.e. t:2015-10-25)
 
 1.2 Edit priority:                                    *todo-commands-priority*
 	`<localleader>j`   Decrease the priority of the current line

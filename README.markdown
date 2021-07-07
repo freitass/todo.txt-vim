@@ -31,6 +31,7 @@ Sorting tasks:
 `<localleader>s@`  Sort the file on @Contexts  
 `<localleader>sd`  Sort the file on dates  
 `<localleader>sdd`  Sort the file on due dates  
+`<localleader>sdt`  Sort the file on start dates as represented by the "t" metadata key (e.g., "t:2017-11-23")
 
 Edit priority:  
 `<localleader>j`   Decrease the priority of the current line  
