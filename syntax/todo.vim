@@ -48,7 +48,7 @@ highlight  default  link  TodoPriorityB  Statement
 highlight  default  link  TodoPriorityC  Identifier
 highlight  default  link  TodoDate       PreProc
 highlight  default  link  TodoProject    Special
-highlight  default  link  TodoContext    Special
+highlight  default  link  TodoContext    String
 
 if exists('g:todo_load_python') && g:todo_load_python
     if has('python')
