@@ -77,6 +77,9 @@ function! todo#txt#remove_completed()
         let l:todo_done_filename = 'done.txt'
     endif
     let l:done_file = substitute(substitute(l:todo_file, 'todo.txt$', l:todo_done_filename, ''), 'Todo.txt$', l:todo_done_filename, '')
+    if exists("g:todo_done_subdir")
+        let l:done_file = substitute(l:done_file, l:target_dir, l:target_dir . '/' . g:todo_done_subdir, '')
+    endif
     if !filewritable(l:done_file) && !filewritable(l:target_dir)
         echoerr "Can't write to file '" . l:todo_done_filename . "'"
         return
