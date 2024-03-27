@@ -56,6 +56,11 @@ nnoremap <script> <silent> <buffer> <localleader>X :call todo#txt#mark_all_as_do
 " Remove completed {{{2
 nnoremap <script> <silent> <buffer> <localleader>D :call todo#txt#remove_completed()<CR>
 
+" Move-to-top/bottom {{{2
+" mnemonic: "Focus" / "Ignore"
+nnoremap <script> <silent> <buffer> <localleader>f *:g//m0<CR>:g//m0<CR>gg
+nnoremap <script> <silent> <buffer> <localleader>i *:g//m$<CR>gg
+
 " Folding {{{1
 " Options {{{2
 setlocal foldmethod=expr
