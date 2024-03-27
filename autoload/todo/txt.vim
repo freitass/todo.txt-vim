@@ -26,7 +26,7 @@ function! s:get_current_date()
 endfunction
 
 function! todo#txt#prepend_date()
-    execute 'normal! I' . s:get_current_date() . ' '
+    execute 'normal! 0i' . s:get_current_date() . ' '
 endfunction
 
 function! todo#txt#replace_date()
@@ -41,7 +41,7 @@ endfunction
 function! todo#txt#mark_as_done()
     call s:remove_priority()
     call todo#txt#prepend_date()
-    execute 'normal! Ix '
+    execute 'normal! 0ix '
 endfunction
 
 function! todo#txt#mark_all_as_done()
